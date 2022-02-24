@@ -3,8 +3,18 @@
 
 var ECService=require('./ec-service');
 
+/*
+SVC_ID
+SVC_URL
+*/
+
 var phs=new ECService({
     localPort:process.env.PORT || 8989,
+    info: {
+	    id: process.env.SVC_ID,
+	    url: process.env.SVC_URL	    
+    },
+    //deprecated
     reporting:{
 	vendor: 'nurego',
 	//endpoint: process.env.NUREGO_ENDPOINT+'/usages?api_key={apiKey}',
