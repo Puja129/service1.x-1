@@ -82,7 +82,7 @@ class ECService extends RSSession {
 	}
 	
 	httpServer.listen(options.localPort, _=> {
-	    debug(`${new Date()} EC: ${process.env.ZONE} EC service is listening on port#${options.localPort}`);
+	    debug(`${new Date()} EC: ${options["info"]["id"]} EC service is listening on port#${options.localPort}`);
 	    this.emit(`service_listening`);
 	});
 
