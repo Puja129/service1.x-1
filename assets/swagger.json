@@ -1,0 +1,723 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Enterprise Connect API",
+    "description": "Enterprise Connect Service API",
+    "version": "v1beta.sendai.1080"
+  },
+  "host": "chia-test",
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/v1beta",
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/token/validate": {
+      "post": {
+        "summary": "Validate the OAuth token",
+        "description": "Validate the OAuth token for the gateway and Agent usage\n",
+        "tags": [
+          "Settings"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer *your_token"
+          },
+          {
+            "name": "Predix-Zone-Id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token Status",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/gateways": {
+      "post": {
+        "summary": "Get all active gateway list",
+        "description": "Get an active list of all gateway instances that have been reported to the service",
+        "tags": [
+          "Settings"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer *your_token"
+          },
+          {
+            "name": "Predix-Zone-Id",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Cloud Foundry service instance id."
+          },
+          {
+            "name": "content",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "description": "The content for exchanging the gateway list."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "active gateway list",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/api/pubkey": {
+      "get": {
+        "summary": "Get public cert for user-relate api",
+        "description": "Get public key for key-pair authentication by user-level api.",
+        "tags": [
+          "Settings"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Bearer *your_token"
+          },
+          {
+            "name": "Predix-Zone-Id",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Cloud Foundry service instance id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "public key",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/health/check": {
+      "get": {
+        "summary": "Validate the EC service status",
+        "description": "Get the status of your current EC service instance \n",
+        "tags": [
+          "Health"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Basic *token"
+          },
+          {
+            "name": "predix-zone-id",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Cloud Foundry service instance id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status of the EC API",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/memory": {
+      "get": {
+        "summary": "Validate the EC service memory usage",
+        "description": "Retreive the current EC service memory usage\n",
+        "tags": [
+          "Health"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Basic *token"
+          },
+          {
+            "name": "predix-zone-id",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Cloud Foundry service instance id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Memory usage of the EC API/Gateway",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/usage": {
+      "post": {
+        "summary": "Report usage",
+        "description": "Report usage by zoneid",
+        "tags": [
+          "Reports"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Basic *token"
+          },
+          {
+            "name": "predix-zone-id",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Cloud Foundry service instance id."
+          },
+          {
+            "name": "content",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "description": "The content for reporting the usage."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response detail",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get last usage",
+        "description": "get last usage by zoneid",
+        "tags": [
+          "Reports"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Basic *token"
+          },
+          {
+            "name": "predix-zone-id",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Cloud Foundry service instance id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response detail",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/certs/csr": {
+      "post": {
+        "summary": "Submit a CSR generated by the Agent for a digital certificate",
+        "description": "Submit a CSR generated by the Agent for a digital certificate",
+        "tags": [
+          "Security"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Basic *token"
+          },
+          {
+            "name": "predix-zone-id",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Cloud Foundry service instance id."
+          },
+          {
+            "name": "content",
+            "in": "body",
+            "required": true,
+            "type": "object",
+            "description": "The CSR content in pem format. Include the BEGIN/END lines."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response detail",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Retrieve current CSR",
+        "description": "Retrieve the current CSR generated by the Agent.",
+        "tags": [
+          "Security"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Basic *token"
+          },
+          {
+            "name": "predix-zone-id",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Cloud Foundry service instance id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response detail",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/certs/service": {
+      "get": {
+        "summary": "Retrieve the EC Cert with public key.",
+        "description": "Retrieve the EC Cert with public key.",
+        "tags": [
+          "Security"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Basic *token"
+          },
+          {
+            "name": "predix-zone-id",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Cloud Foundry service instance id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response detail",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/admin/accounts/{group-id}/add": {
+      "post": {
+        "summary": "Generate an EC system account",
+        "description": "Create additional Agent IDs for EC Agent Use\n",
+        "tags": [
+          "Accounts"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Basic *token"
+          },
+          {
+            "name": "group-id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "An existing Group Id where to attach the newly generated/existing agent Id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response details",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/accounts/{group-id}/add/{agent-id}": {
+      "post": {
+        "summary": "Attach an existing agent id to an exiting EC system account",
+        "description": "Attach an existing agent id to an exiting EC system account\n",
+        "tags": [
+          "Accounts"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Basic *token"
+          },
+          {
+            "name": "group-id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "An existing Group Id where to attach the newly generated/existing agent Id."
+          },
+          {
+            "name": "agent-id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "An existing Agent Id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response details",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/accounts/{group-id}": {
+      "post": {
+        "summary": "Create a pair of EC system accounts and assigned to the indicated group.",
+        "description": "Create a New EC group with a pair of default Agent IDs .\n",
+        "tags": [
+          "Accounts"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Basic *token"
+          },
+          {
+            "name": "group-id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "By defaut, predix-zone-id. You may create your own group."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response details",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": " Get the EC system account",
+        "description": "Get the current configuration of a particular EC Group\n",
+        "tags": [
+          "Accounts"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Basic *token"
+          },
+          {
+            "name": "group-id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "pass the group id. predix-zone-id by default."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response for account details",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete the EC system account",
+        "description": "Delete an existing EC system account by predix zone id\n",
+        "tags": [
+          "Accounts"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Basic *token"
+          },
+          {
+            "name": "group-id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "pass the group id, predix zone id by default"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response details",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update the EC Service settings in the account",
+        "description": "Update the EC Service settings in the account with the CF details. You may ONLY update the trustedIssuerIds list from CF UAA.\n",
+        "tags": [
+          "Accounts"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Basic *token"
+          },
+          {
+            "name": "group-id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "the group id. predix-zone-id by default."
+          },
+          {
+            "name": "settings",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/cf_cs_settings"
+            },
+            "required": true,
+            "description": "Cloud Foundry setting destails."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "response for setting update",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/admin/accounts/list": {
+      "get": {
+        "summary": "Get the list of account available for agent Ids",
+        "description": "Get the list of account available for agent Ids. \n",
+        "tags": [
+          "Accounts"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Basic *token"
+          },
+          {
+            "name": "predix-zone-id",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Cloud Foundry service instance id."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status of the EC API",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/admin/accounts/validate": {
+      "get": {
+        "summary": "Validate the agent ids if both are in a same group",
+        "description": "Validate the agent ids if both are in a same group \n",
+        "tags": [
+          "Accounts"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Basic *token"
+          },
+          {
+            "name": "predix-zone-id",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Cloud Foundry service instance id."
+          },
+          {
+            "name": "agtId1",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Group validation Agent Id #1."
+          },
+          {
+            "name": "agtId2",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Group validation Agent Id #2."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status of the EC API",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "cf_cs_settings": {
+      "type": "object",
+      "properties": {
+        "trustedIssuerIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "client": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        },
+        "server": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "accounts": {
+      "type": "object",
+      "properties": {
+        "clientId": {
+          "type": "string"
+        },
+        "serverId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

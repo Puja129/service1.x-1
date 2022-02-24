@@ -1,0 +1,33 @@
+---
+applications:
+  - name: {APP}-{ENV}
+    memory: 1024M
+    instances: 1
+    stack: cflinuxfs2
+    path: .
+    command: node ./app.js
+    buildpack: https://github.com/cloudfoundry/buildpack-nodejs.git#v1.6.48
+    env:
+     ENV: {EC_TAG}
+     BASE: {BASE}
+     ZAC_UAA: {ZAC_UAA}
+     ZAC_URL: {ZAC_URL}
+     ZAC_SERVICE_ID: {ZAC_SERVICE_ID}
+     ZAC_CLIENT_ID: {ZAC_CLIENT_ID}
+     ZAC_CLIENT_SECRET: {ZAC_CLIENT_SECRET}
+     ADMIN_USR: {ADMIN_USR}
+     ADMIN_PWD: {ADMIN_PWD}
+     CF_USR: {CF_USR}
+     CF_PWD: {CF_PWD}
+     CF_LOGIN: {CF_LOGIN}
+     CF_API: {CF_API}
+     NUREGO_FEATURE_ID: {NUREGO_FEATURE_ID}
+     NUREGO_USAGE_FEATURE_ID: {NUREGO_USAGE_FEATURE_ID}
+     NUREGO_API_KEY: {NUREGO_API_KEY}
+     NUREGO_ENDPOINT: {NUREGO_ENDPOINT}
+     NR_KEY: {NR_KEY}
+     NUREGO_TKN_USR: {NUREGO_TKN_USR}
+     NUREGO_TKN_PWD: {NUREGO_TKN_PWD}
+     NUREGO_TKN_INS: {NUREGO_TKN_INS}
+     NUREGO_TKN_URL: {NUREGO_TKN_URL}
+     EC_PRVT_PWD: {EC_PRVT_PWD}

@@ -1,0 +1,82 @@
+<!--
+    @license
+    Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+  --><html><head><link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-request.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-radio-button/paper-radio-button.html">
+<link rel="import" href="../bower_components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="shared-styles.html">
+
+</head><body><dom-module id="my-view1">
+  <template>
+    <style include="shared-styles">
+      :host {
+      display: block;
+
+      padding: 10px;
+      }
+      #inputForValidation {
+      	max-width: 500px;
+      }
+			#gatewayInputForValidation {
+				max-width: 800px;
+			}
+			paper-tabs {
+				--paper-tabs-selection-bar-color: var(--app-primary-color);
+				--paper-tab-ink: var(--app-primary-color);
+				font-family: 'Roboto', 'Noto', sans-serif;
+				-webkit-font-smoothing: antialiased;
+				width: 100%;
+				text-transform: uppercase;
+				margin-bottom: 1px;
+			}
+			card {
+				display: none;
+			}
+    </style>
+		<paper-tabs selected="0" autoselect="">
+				<paper-tab on-click="showServiceCard">EC Service</paper-tab>
+				<paper-tab on-click="showGatewayCard">EC Gateway</paper-tab>
+			</paper-tabs>
+    <div class="card" id="Service">
+      <div class="circle">EC</div>
+      <h1>EC Service Dashboard</h1>
+      <p>Enterprise-Connect services dashboard for Health Check (Memory Usage)
+      </p><p>The EC gateway service provides manageable and scalable connectivity between the Predix cloud and your enterprise.</p>
+      <paper-input id="inputForValidation" required="" label="Add a zone id." error-message="zone-id is required." on-keyup="handleAddZone"></paper-input>
+			<div style="margin-bottom: 40px;">
+				<paper-radio-group selected="v1">
+						<paper-radio-button id="v1" name="v1">v1</paper-radio-button>
+						<paper-radio-button id="beta" name="beta">beta</paper-radio-button>
+				</paper-radio-group>
+			</div>
+      <div id="memContainer" style="width:100%; height:400px;"></div>
+      <div id="rssContainer" style="width:100%; height:400px;"></div>
+      <div id="usrCPUContainer" style="width:100%; height:400px;"></div>
+      <div id="stmCPUContainer" style="width:100%; height:400px;"></div>
+    </div>
+		<div class="card" id="Gateway">
+			<div class="circle">EC</div>
+      <h1>Gateway Dashboard</h1>
+			<p>Enterprise-Connect Gateway dashboard shows superconnections, client pool, and various memory usage charts.</p>
+			<paper-input id="gatewayInputForValidation" required="" label="Add a gateway route." error-message="gw route is required." on-keyup="handleAddGateway"></paper-input>
+			<div id="gwConnectionsContainer" style="width:100%; height:400px;"></div>
+			<div id="gwAllocContainer" style="width:100%; height:400px;"></div>
+      <div id="gwTotalAllocContainer" style="width:100%; height:400px;"></div>
+      <div id="gwHeapAllocContainer" style="width:100%; height:400px;"></div>
+      <div id="gwHeapSysContainer" style="width:100%; height:400px;"></div>
+    </div>
+  </template>
+	<script src="../bower_components/highcharts/highcharts.js"></script>
+  <script src="./dashboard.js"></script>
+</dom-module>
+</body></html>

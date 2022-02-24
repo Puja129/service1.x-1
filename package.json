@@ -1,0 +1,39 @@
+{
+    "name": "ec-service",
+    "version": "0.1.0",
+    "author": "A. Yasuda <apolo.yasuda@ge.com>",
+    "contributors": [
+	{
+	    "name": "A. Yasuda",
+	    "email": "apolo.yasuda@ge.com"
+	}
+    ],
+    "description": "The Entperise-Connect Service API Backend.",
+    "scripts": {
+	"test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+	"tcp",
+	"predix",
+	"tunnel",
+	"raw",
+	"socket",
+	"web",
+	"socket",
+	"websocket"
+    ],
+    "dependencies": {
+	"debug": "2.2.0",
+	"request": "2.72.0",
+	"ip": "1.1.3",
+	"mime":"^1.3.4"
+    },
+    "license": "ISC",
+    "engines": {
+	"node": ">=16.0.0"
+    },
+    "devDependencies": {
+	"ip": "1.1.3",
+	"mime": "^1.3.4"
+    }
+}

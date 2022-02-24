@@ -1,0 +1,30 @@
+name: Build Service 1.x Dependency
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    environment: dev
+    env:
+      MY_REGISTRY_TAG: "ghcr.io/ec-release/service:v1.1"
+      
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Container Img Building
+        run: |
+          docker build -t $MY_REGISTRY_TAG .
+   
+      #- name: Container Test
+      #  run: |
+      #    docker run $MY_REGISTRY_TAG
+      - name: Container Images Deployment
+        env:
+          MY_REGISTRY_ID: ${{secrets.MY_GITHUB_ID}}
+          MY_REGISTRY_TKN: ${{secrets.MY_GITHUB_TKN}}
+          MY_REGISTRY: "https://ghcr.io"
+        run: |
+          echo $MY_REGISTRY_TKN | docker login $MY_REGISTRY -u $MY_REGISTRY_ID --password-stdin
+          docker push $MY_REGISTRY_TAG

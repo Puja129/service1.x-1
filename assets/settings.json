@@ -1,0 +1,44 @@
+{
+    "clients": {
+        "191000": {
+            "blockList": [
+                "76.76.7.7",
+                "7.7.7.7"
+            ],
+            "whiteList": [
+                "0.0.0.0/0",
+                "86.8.8.8"
+            ],
+            "auth": {
+                "type": "zac",
+                "clientId": "testId",
+                "clientSecret": "testSecret",
+                "authUrl": "https://c1a3056c-ca48-4f0e-9821-a3381050a88c.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token"
+            }
+        }
+    },
+    "servers": {
+        "191001": {
+            "blockList": [
+                "76.76.7.7",
+                "7.7.7.7"
+            ],
+            "whiteList": [
+                "0.0.0.0/0",
+                "86.8.8.8"
+            ],
+            "auth": {
+                "type": "zac",
+                "clientId": "testId",
+                "clientSecret": "testSecret",
+                "authUrl": "https://c1a3056c-ca48-4f0e-9821-a3381050a88c.predix-uaa.run.aws-usw02-pr.ice.predix.io/oauth/token"
+            }
+        }
+    },
+    "groups": {
+        "e98b6d18-7251-4aec-9485-920db7ca8a8b": [
+            "191000",
+            "191001"
+        ]
+    }
+}

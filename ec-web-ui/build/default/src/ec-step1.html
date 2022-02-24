@@ -1,0 +1,74 @@
+<!--
+    @license
+    Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+  --><html><head><link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-request.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="shared-styles.html">
+
+</head><body><dom-module id="ec-step1">
+  <template>
+    <style include="shared-styles">
+      :host {
+      display: block;
+
+      padding: 10px;
+      }
+      #inputForValidation {
+      max-width: 500px;
+      }
+      
+    .output {
+      margin-top: 20px;
+      word-wrap: break-word;
+      @apply(--paper-font-common-code);
+    }
+
+
+    </style>
+
+    <div class="card">
+      <div class="circle">D</div>
+      <h1>Dashboard</h1>
+      <p>Enterprise-Connect services dashboard for Health Check (Memory Usage)
+      </p><p>The EC gateway service provides manageable and scalable connectivity between the Predix cloud and your enterprise.</p>
+      <paper-input id="inputForValidation" required="" label="Add a zone id." error-message="zone-id is required." on-keyup="handleAddZone"></paper-input>
+      test
+      <div id="memContainer" style="width:100%; height:400px;">
+	
+	<form is="iron-form" method="get" action="/" id="basic">
+	  <paper-input name="name" label="Name" required=""></paper-input>
+	  <br>
+	  <input type="checkbox" name="food" value="donuts" checked=""> I like donuts<br>
+	  <input type="checkbox" name="food" value="pizza" required=""> I like pizza<br>
+	  <paper-checkbox name="food" value="cheese" required="">I like cheese</paper-checkbox><br>
+	  <paper-dropdown-menu label="Cars" name="cars" required="">
+	    <paper-menu class="dropdown-content">
+	      <paper-item value="volvo">Volvo</paper-item>
+	      <paper-item value="saab">Saab</paper-item>
+	      <paper-item value="fiat">Fiat</paper-item>
+	      <paper-item value="audi">Audi</paper-item>
+	    </paper-menu>
+	  </paper-dropdown-menu>
+	  <paper-button class="blue" raised="" onclick="_submit(event)">Submit</paper-button>
+	  <paper-button raised="" onclick="_submit(event)">Reset</paper-button>
+	  <div class="output"></div>
+	</form>
+      </div>
+      <!--<div id="rssContainer" style="width:100%; height:400px;"></div>
+	  <div id="usrCPUContainer" style="width:100%; height:400px;"></div>
+	  <div id="stmCPUContainer" style="width:100%; height:400px;"></div>-->
+      
+    </div>
+  </template>
+  <!--<script src="/../bower_components/highcharts/highcharts.js"></script>-->
+      <script src="./ec-step1.js"></script>
+</dom-module>
+</body></html>

@@ -1,0 +1,25 @@
+name: Test Service 1.1 (Beta)
+on:
+  workflow_dispatch:
+  #push:
+  #  branches: [ 0.1-b.1, main ]
+  #pull_request:
+  #  branches: [ 0.1-b.1, main ]
+  #  types: [opened, synchronize]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    environment: beta
+    env:
+      AGENT_REV: "temp"
+      GHB_TKN: ${{secrets.MY_GITHUB_TKN}}
+    steps:
+      - uses: actions/checkout@v2
+      #- uses: actions-rs/toolchain@v1
+      #  with:
+      #    toolchain: nightly #stable
+      #    override: true
+      - name: Building Service 1.1 (Beta)
+        run: |
+          docker run -e GHB_TKN=$GHB_TKN ghcr.io/ec-release/service:v1.1
