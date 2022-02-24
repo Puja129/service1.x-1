@@ -38,7 +38,7 @@ class ECService extends RSSession {
 
 	this.init(options);
 
-	this.replaceStrInJsonFile('./../assets/swagger.json',["host"],[this._envs.application_uris[0]]);
+	this.replaceStrInJsonFile('./../assets/swagger.json',["host"],options["info"]["url"]);
 
     }
 
