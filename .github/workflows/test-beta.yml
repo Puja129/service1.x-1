@@ -24,7 +24,7 @@ jobs:
       #    override: true
       - name: Building Service 1.1 (Beta)
         run: |
-          docker run -e GHB_TKN=$GHB_TKN && \
-          -e LEGACY_ADM_TKN=$LEGACY_ADM_TKN && \
-          -e LEGACY_SVC_ID=$LEGACY_SVC_ID && \
+          docker run -e GHB_TKN=$GHB_TKN \
+          -e LEGACY_ADM_TKN=$LEGACY_ADM_TKN \
+          -e LEGACY_SVC_ID=$LEGACY_SVC_ID \
           ghcr.io/ec-release/service:v1.1
