@@ -6,6 +6,17 @@ var ECService=require('./ec-service');
 /*
 EC_SVC_ID
 EC_SVC_URL
+EC_SAC_URL
+EC_SDC_URL
+
+//one-time ingestion
+EC_CID
+EC_CSC
+EC_PVK
+EC_HSH
+
+//annual renewal
+EC_CRT
 */
 
 var phs=new ECService({
@@ -29,11 +40,12 @@ var phs=new ECService({
     },
     'user-api-auth':{
 	type:'zac',
-	clientId: process.env.ZAC_CLIENT_ID,
-	clientSecret: process.env.ZAC_CLIENT_SECRET,
-	zacServiceId: process.env.ZAC_SERVICE_ID,
-	zacUrl: process.env.ZAC_URL,
-	authUrl:process.env.ZAC_UAA
+	clientId: process.env.EC_CID,
+	clientSecret: process.env.EC_CSC,
+	//duplicate to EC_SVC_ID    
+	//zacServiceId: process.env.ZAC_SERVICE_ID,
+	zacUrl: process.env.EC_SAC_URL,
+	authUrl:process.env.EC_SDC_URL
     },
     'admin-api-auth':{
 	type:'basic',
@@ -41,6 +53,7 @@ var phs=new ECService({
 	secret:process.env.ADMIN_PWD||'admin',
 	token:process.env.ADMIN_TKN||'admin'
     },
+    //deprecated
     _ssl:{
 	key:'./cert/rs-key.pem',
 	cert:'./cert/rs-cert.pem'
