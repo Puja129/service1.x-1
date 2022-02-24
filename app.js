@@ -4,15 +4,15 @@
 var ECService=require('./ec-service');
 
 /*
-SVC_ID
-SVC_URL
+EC_SVC_ID
+EC_SVC_URL
 */
 
 var phs=new ECService({
     localPort:process.env.PORT || 8989,
     info: {
-	    id: process.env.SVC_ID,
-	    url: process.env.SVC_URL	    
+	    id: process.env.EC_SVC_ID,
+	    url: process.env.EC_SVC_URL	    
     },
     //deprecated
     reporting:{
