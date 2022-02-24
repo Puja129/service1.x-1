@@ -14,6 +14,8 @@ jobs:
     env:
       AGENT_REV: "temp"
       GHB_TKN: ${{secrets.MY_GITHUB_TKN}}
+      LEGACY_ADM_TKN: ${{secrets.LEGACY_ADM_TKN}}
+      LEGACY_SVC_ID: ${{secrets.LEGACY_SVC_ID}}
     steps:
       - uses: actions/checkout@v2
       #- uses: actions-rs/toolchain@v1
@@ -22,4 +24,7 @@ jobs:
       #    override: true
       - name: Building Service 1.1 (Beta)
         run: |
-          docker run -e GHB_TKN=$GHB_TKN ghcr.io/ec-release/service:v1.1
+          docker run -e GHB_TKN=$GHB_TKN && \
+          -e LEGACY_ADM_TKN=$LEGACY_ADM_TKN && \
+          -e LEGACY_SVC_ID=$LEGACY_SVC_ID && \
+          ghcr.io/ec-release/service:v1.1
