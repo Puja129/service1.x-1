@@ -14,6 +14,7 @@ jobs:
     env:
       EC_SVC_ID: my-test-id
       EC_SVC_URL: my-test-url
+      EC_ADM_TKN: my-legacy-cf-admin-token
       EC_SAC_DN: ${{secrets.EC_SAC_DN}}
       EC_ATH_DN: ${{secrets.EC_ATH_DN}}
       EC_CID: ${{secrets.EC_CID}}
@@ -36,6 +37,7 @@ jobs:
             docker run \
             -e EC_SVC_ID=$EC_SVC_ID \
             -e EC_SVC_URL=$EC_SVC_URL \
+            -e EC_ADM_TKN=$EC_ADM_TKN \
             -e EC_SAC_DN=$EC_SAC_DN \
             -e EC_ATH_DN=$EC_ATH_DN \
             -e EC_CID=$EC_CID \
