@@ -30,12 +30,7 @@ class ECService extends RSSession {
 	super(options);
 
 	//deprecated
-	/*if (process.env.EC_SETTINGS){
-	    let accMgr=new RSAccountMgr(options);
-	    accMgr.debug("EC:Service");
-	    let _st=JSON.parse(new Buffer(process.env.EC_SETTINGS,'base64').toString());
-	    accMgr.InitAccounts(process.env.ZONE,_st);
-	}*/
+	/**/
 	    
 	var fs = require('fs');
  
@@ -46,7 +41,15 @@ class ECService extends RSSession {
 	  if (!err){ 
 	    let _st = JSON.parse(data);
 	    accMgr.InitAccounts(options['info']['id'],_st);
-	  }
+	  } else {
+	
+            if (process.env.EC_SETTINGS){
+	      let accMgr=new RSAccountMgr(options);
+	      accMgr.debug("EC:Service");
+	      let _st=JSON.parse(new Buffer(process.env.EC_SETTINGS,'base64').toString());
+	      accMgr.InitAccounts(options['info']['id'],_st);
+	    }
+	  }	  
 	  
 	  this.init(options);
 	  this.replaceStrInJsonFile('./../assets/swagger.json',["host"],options["info"]["url"]);
