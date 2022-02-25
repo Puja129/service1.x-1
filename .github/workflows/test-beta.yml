@@ -31,6 +31,8 @@ jobs:
       #    override: true
       - name: Launch Service 1.1 (Beta)
         run: |
+          mkdir -p ./svcs
+          timeout -k 15 15 \
           docker run \
           -e EC_SVC_ID=$EC_SVC_ID \
           -e EC_SVC_URL=$EC_SVC_URL \
@@ -43,4 +45,7 @@ jobs:
           -e EC_SCRIPT_1=$EC_SCRIPT_1 \
           -e EC_SCRIPT_2=$EC_SCRIPT_2 \
           -e EC_SCRIPT_3=$EC_SCRIPT_3 \
+          -v $(pwd)/svcs:/root/svcs \
           ghcr.io/ec-release/service:v1.1
+
+          ./tree ./svcs
