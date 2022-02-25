@@ -32,20 +32,20 @@ jobs:
       - name: Launch Service 1.1 (Beta)
         run: |
           mkdir -p ./svcs
-          timeout -k 15 15 \
-          docker run \
-          -e EC_SVC_ID=$EC_SVC_ID \
-          -e EC_SVC_URL=$EC_SVC_URL \
-          -e EC_SAC_DN=$EC_SAC_DN \
-          -e EC_ATH_DN=$EC_ATH_DN \
-          -e EC_CID=$EC_CID \
-          -e EC_CSC=$EC_CSC \
-          -e EC_PVK=$EC_PVK \
-          -e EC_CER=$EC_CER \
-          -e EC_SCRIPT_1=$EC_SCRIPT_1 \
-          -e EC_SCRIPT_2=$EC_SCRIPT_2 \
-          -e EC_SCRIPT_3=$EC_SCRIPT_3 \
-          -v $(pwd)/svcs:/root/svcs \
-          ghcr.io/ec-release/service:v1.1 2> /dev/null
-
-          ./tree ./svcs
+          {
+            timeout -k 15 15 \
+            docker run \
+            -e EC_SVC_ID=$EC_SVC_ID \
+            -e EC_SVC_URL=$EC_SVC_URL \
+            -e EC_SAC_DN=$EC_SAC_DN \
+            -e EC_ATH_DN=$EC_ATH_DN \
+            -e EC_CID=$EC_CID \
+            -e EC_CSC=$EC_CSC \
+            -e EC_PVK=$EC_PVK \
+            -e EC_CER=$EC_CER \
+            -e EC_SCRIPT_1=$EC_SCRIPT_1 \
+            -e EC_SCRIPT_2=$EC_SCRIPT_2 \
+            -e EC_SCRIPT_3=$EC_SCRIPT_3 \
+            -v $(pwd)/svcs:/root/svcs \
+            ghcr.io/ec-release/service:v1.1
+          } || ./tree ./svcs
