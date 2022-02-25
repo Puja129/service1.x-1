@@ -3,19 +3,6 @@
 
 var ECService=require('./ec-service');
 
-/*
-EC_SVC_ID
-EC_SVC_URL
-EC_SAC_DN
-EC_ATH_DN
-
-EC_CID
-EC_CSC
-EC_PVK
-//annual renewal
-EC_CER
-*/
-
 var phs=new ECService({
     localPort:process.env.PORT || 8989,
     info: {
@@ -48,9 +35,10 @@ var phs=new ECService({
     },
     'admin-api-auth':{
 	type:'basic',
-	id:process.env.ADMIN_USR||'admin',
-	secret:process.env.ADMIN_PWD||'admin',
-	token:process.env.ADMIN_TKN||'admin'
+	//id:'admin',
+	//secret:process.env.ADMIN_PWD||'admin',
+	//token:btoa(process.env.ADMIN_TKN||'admin'
+    	token:process.env.EC_ADM_TKN
     },
     //deprecated
     _ssl:{
