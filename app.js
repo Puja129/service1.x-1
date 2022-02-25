@@ -9,11 +9,9 @@ EC_SVC_URL
 EC_SAC_URL
 EC_SDC_URL
 
-//one-time ingestion
 EC_CID
 EC_CSC
 EC_PVK
-
 //annual renewal
 EC_CRT
 */
