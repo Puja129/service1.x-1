@@ -39,7 +39,7 @@ class ECService extends RSSession {
 	    
 	var fs = require('fs');
  
-	fs.readFile(`./../${options['info']['id']}.json`, 'utf8', (err, data) {
+	fs.readFile(`./../svcs/${options['info']['id']}.json`, 'utf8', (err, data) {
 	  let accMgr=new RSAccountMgr(options);
 	  accMgr.debug("EC:Service");
 	    
