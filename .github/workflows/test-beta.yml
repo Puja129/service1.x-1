@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    environment: beta
+    environment: dev
     env:
       EC_SVC_ID: my-test-id
       EC_SVC_URL: my-test-url
