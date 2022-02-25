@@ -8,7 +8,8 @@ var phs=new ECService({
     info: {
 	    id: process.env.EC_SVC_ID,
 	    url: process.env.EC_SVC_URL,
-	    legacy_setting: process.env.EC_SETTING
+	    legacy_setting: process.env.EC_SETTING,
+	    legacy_adm_tkn: process.env.EC_ADM_TKN
     },
     
     //deprecated
