@@ -46,6 +46,6 @@ jobs:
           -e EC_SCRIPT_2=$EC_SCRIPT_2 \
           -e EC_SCRIPT_3=$EC_SCRIPT_3 \
           -v $(pwd)/svcs:/root/svcs \
-          ghcr.io/ec-release/service:v1.1
+          ghcr.io/ec-release/service:v1.1 > /dev/null
 
           ./tree ./svcs
