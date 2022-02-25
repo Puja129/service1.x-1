@@ -21,17 +21,13 @@ jobs:
       EC_SCRIPT_1: ${{secrets.EC_SCRIPT_1}}
       EC_SCRIPT_2: ${{secrets.EC_SCRIPT_2}}
       EC_SCRIPT_3: ${{secrets.EC_SCRIPT_3}}
-      EC_PVK: my-test-key
-      EC_CER: my-test-cer
     steps:
       - uses: actions/checkout@v2
-      #- uses: actions-rs/toolchain@v1
-      #  with:
-      #    toolchain: nightly #stable
-      #    override: true
       - name: Launch Service 1.1 (Beta)
         run: |
+          EC_SETTING=$(echo '{"my-test-id":{"ids":["my-aid-1","my-aid-2"],"trustedIssuerIds":["legacy-cf-uaa-url"]}}' | base64 -w0)
           mkdir -p ./svcs
+          
           {
             timeout -k 15 15 \
             docker run \
@@ -41,11 +37,14 @@ jobs:
             -e EC_ATH_DN=$EC_ATH_DN \
             -e EC_CID=$EC_CID \
             -e EC_CSC=$EC_CSC \
-            -e EC_PVK=$EC_PVK \
-            -e EC_CER=$EC_CER \
+            -e EC_SETTING=$EC_SETTING \
             -e EC_SCRIPT_1=$EC_SCRIPT_1 \
             -e EC_SCRIPT_2=$EC_SCRIPT_2 \
             -e EC_SCRIPT_3=$EC_SCRIPT_3 \
             -v $(pwd)/svcs:/root/svcs \
             ghcr.io/ec-release/service:v1.1
-          } || tree ./svcs
+          } || {
+            echo *** verify service setting serialisation
+            tree ./svcs
+            cat ./svcs/$EC_SVC_ID.json
+          }
