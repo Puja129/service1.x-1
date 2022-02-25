@@ -13,7 +13,7 @@ EC_CID
 EC_CSC
 EC_PVK
 //annual renewal
-EC_CRT
+EC_CER
 */
 
 var phs=new ECService({
