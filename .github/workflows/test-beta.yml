@@ -26,7 +26,7 @@ jobs:
       #  with:
       #    toolchain: nightly #stable
       #    override: true
-      - name: Building Service 1.1 (Beta)
+      - name: Launch Service 1.1 (Beta)
         run: |
           docker run \
           -e EC_SVC_ID=$EC_SVC_ID \
