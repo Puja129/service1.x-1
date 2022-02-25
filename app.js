@@ -20,8 +20,10 @@ var phs=new ECService({
     localPort:process.env.PORT || 8989,
     info: {
 	    id: process.env.EC_SVC_ID,
-	    url: process.env.EC_SVC_URL	    
+	    url: process.env.EC_SVC_URL,
+	    legacy_setting: process.env.EC_SETTING
     },
+    
     //deprecated
     reporting:{
 	vendor: 'nurego',
