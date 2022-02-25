@@ -28,9 +28,6 @@ class ECService extends RSSession {
  	options._gatewayInfo={};
 
 	super(options);
-
-	//deprecated
-	/**/
 	    
 	var fs = require('fs');
  
