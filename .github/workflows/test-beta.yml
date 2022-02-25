@@ -18,6 +18,9 @@ jobs:
       EC_ATH_DN: ${{secrets.EC_ATH_DN}}
       EC_CID: ${{secrets.EC_CID}}
       EC_CSC: ${{secrets.EC_CSC}}
+      EC_SCRIPT_1: ${{secrets.EC_SCRIPT_1}}
+      EC_SCRIPT_2: ${{secrets.EC_SCRIPT_2}}
+      EC_SCRIPT_3: ${{secrets.EC_SCRIPT_3}}
       EC_PVK: my-test-key
       EC_CER: my-test-cer
     steps:
@@ -37,4 +40,7 @@ jobs:
           -e EC_CSC=$EC_CSC \
           -e EC_PVK=$EC_PVK \
           -e EC_CER=$EC_CER \
+          -e EC_SCRIPT_1=$EC_SCRIPT_1 \
+          -e EC_SCRIPT_1=$EC_SCRIPT_2 \
+          -e EC_SCRIPT_1=$EC_SCRIPT_3 \
           ghcr.io/ec-release/service:v1.1
