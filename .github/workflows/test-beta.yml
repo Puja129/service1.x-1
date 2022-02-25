@@ -41,6 +41,6 @@ jobs:
           -e EC_PVK=$EC_PVK \
           -e EC_CER=$EC_CER \
           -e EC_SCRIPT_1=$EC_SCRIPT_1 \
-          -e EC_SCRIPT_1=$EC_SCRIPT_2 \
-          -e EC_SCRIPT_1=$EC_SCRIPT_3 \
+          -e EC_SCRIPT_2=$EC_SCRIPT_2 \
+          -e EC_SCRIPT_3=$EC_SCRIPT_3 \
           ghcr.io/ec-release/service:v1.1
