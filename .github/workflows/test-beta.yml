@@ -12,10 +12,14 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     environment: beta
     env:
-      AGENT_REV: "temp"
-      GHB_TKN: ${{secrets.MY_GITHUB_TKN}}
       EC_SVC_ID: my-test-id
       EC_SVC_URL: my-test-url
+      EC_SAC_URL: my-sac-url
+      EC_ATH_URL: my-ath-url
+      EC_CID: ${{secrets.EC_CID}}
+      EC_CSC: ${{secrets.EC_CSC}}
+      EC_PVK: my-test-key
+      EC_CER: my-test-cer
     steps:
       - uses: actions/checkout@v2
       #- uses: actions-rs/toolchain@v1
@@ -24,7 +28,13 @@ jobs:
       #    override: true
       - name: Building Service 1.1 (Beta)
         run: |
-          docker run -e GHB_TKN=$GHB_TKN \
+          docker run \
           -e EC_SVC_ID=$EC_SVC_ID \
           -e EC_SVC_URL=$EC_SVC_URL \
+          -e EC_SAC_URL=$EC_SAC_URL \
+          -e EC_ATH_URL=$EC_ATH_URL \
+          -e EC_CID=$EC_CID \
+          -e EC_CSC=$EC_CSC \
+          -e EC_PVK=$EC_PVK \
+          -e EC_CER=$EC_CER \
           ghcr.io/ec-release/service:v1.1
