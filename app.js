@@ -13,7 +13,6 @@ EC_SDC_URL
 EC_CID
 EC_CSC
 EC_PVK
-EC_HSH
 
 //annual renewal
 EC_CRT
