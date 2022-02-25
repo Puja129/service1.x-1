@@ -14,8 +14,8 @@ jobs:
     env:
       EC_SVC_ID: my-test-id
       EC_SVC_URL: my-test-url
-      EC_SAC_URL: my-sac-url
-      EC_ATH_URL: my-ath-url
+      EC_SAC_DN: ${{secrets.EC_SAC_DN}}
+      EC_ATH_DN: ${{secrets.EC_ATH_DN}}
       EC_CID: ${{secrets.EC_CID}}
       EC_CSC: ${{secrets.EC_CSC}}
       EC_PVK: my-test-key
@@ -31,8 +31,8 @@ jobs:
           docker run \
           -e EC_SVC_ID=$EC_SVC_ID \
           -e EC_SVC_URL=$EC_SVC_URL \
-          -e EC_SAC_URL=$EC_SAC_URL \
-          -e EC_ATH_URL=$EC_ATH_URL \
+          -e EC_SAC_DN=$EC_SAC_DN \
+          -e EC_ATH_DN=$EC_ATH_DN \
           -e EC_CID=$EC_CID \
           -e EC_CSC=$EC_CSC \
           -e EC_PVK=$EC_PVK \
