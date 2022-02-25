@@ -7,7 +7,7 @@ var ECService=require('./ec-service');
 EC_SVC_ID
 EC_SVC_URL
 EC_SAC_URL
-EC_SDC_URL
+EC_ATH_URL
 
 EC_CID
 EC_CSC
@@ -42,7 +42,7 @@ var phs=new ECService({
 	//duplicate to EC_SVC_ID    
 	//zacServiceId: process.env.ZAC_SERVICE_ID,
 	zacUrl: process.env.EC_SAC_URL,
-	authUrl:process.env.EC_SDC_URL
+	authUrl:process.env.EC_ATH_URL
     },
     'admin-api-auth':{
 	type:'basic',
