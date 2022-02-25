@@ -18,7 +18,7 @@ WORKDIR /root
 
 COPY ./package.json ./
 
-RUN apk update && apk add wget curl git tree bash && \
+RUN apk update && apk add wget curl git tree bash jq && \
 npm install
 
 # deprecated cf support
