@@ -36,10 +36,10 @@ var phs=new ECService({
     },
     'admin-api-auth':{
 	type:'basic',
-	//id:'admin',
-	//secret:process.env.ADMIN_PWD||'admin',
+	id:'admin',
+	secret:process.env.EC_ADM_TKN||'admin',
 	//token:btoa(process.env.ADMIN_TKN||'admin'
-    	token:process.env.EC_ADM_TKN
+    	//token:process.env.EC_ADM_TKN
     },
     //deprecated
     _ssl:{
