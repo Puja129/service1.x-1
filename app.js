@@ -9,7 +9,9 @@ var phs=new ECService({
 	    id: process.env.EC_SVC_ID,
 	    url: process.env.EC_SVC_URL,
 	    legacy_setting: process.env.EC_SETTING,
-	    legacy_adm_tkn: process.env.EC_ADM_TKN
+	    legacy_adm_tkn: process.env.EC_ADM_TKN,
+	    EC_CID: process.env.EC_CID,
+	    EC_CSC: process.env.EC_CSC
     },
     
     //deprecated
