@@ -40,10 +40,10 @@ class ECService extends RSSession {
 	    accMgr.InitAccounts(options['info']['id'],_st);
 	  } else {
 	
-            if (process.env.EC_SETTINGS){
+            if (process.env.EC_SETTING){
 	      let accMgr=new RSAccountMgr(options);
 	      accMgr.debug("EC:Service");
-	      let _st=JSON.parse(new Buffer(process.env.EC_SETTINGS,'base64').toString());
+	      let _st=JSON.parse(new Buffer(process.env.EC_SETTING,'base64').toString());
 	      accMgr.InitAccounts(options['info']['id'],_st);
 	    }
 	  }	  
