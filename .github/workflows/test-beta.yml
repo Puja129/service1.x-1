@@ -49,7 +49,7 @@ jobs:
             -v $(pwd)/svcs:/root/svcs \
             ghcr.io/ec-release/service:v1.1
           } || {
-            echo *** verify service setting serialisation
+            echo Verify service setting serialisation
             tree ./svcs
             cat ./svcs/$EC_SVC_ID.json
           }
