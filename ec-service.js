@@ -64,7 +64,7 @@ class ECService extends RSSession {
 	    _dbg=this._debug;
 	return new Promise((reso,reje)=>{	    
 		
-		const ls = spawn('agent', ['-hsh', '-smp'], { env: { ...process.env, EC_PPS: _this._options['info']['EC_CSC'] } }});
+		const ls = spawn('agent', ['-hsh', '-smp'], { env: {...process.env, EC_PPS: _this._options['info']['EC_CSC'] }});
 
 		ls.stdout.on('data', (data) => {
 		  reso({stdout: `${data}`});
