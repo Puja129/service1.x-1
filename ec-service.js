@@ -16,6 +16,7 @@ const RSSession = require('./lib/session');
 const RSIPFilter = require('./lib/ipfilter');
 const RSApi = require("./lib/api");
 const RSAccountMgr = require("./lib/managers/account-mgr");
+const { spawn } = require('child_process');
 
 class ECService extends RSSession {
 
