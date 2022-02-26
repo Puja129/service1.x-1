@@ -52,37 +52,10 @@ class ECService extends RSSession {
 	  this.init(options);
 	  this.replaceStrInJsonFile('./../assets/swagger.json',["host"],options["info"]["url"]);
 
-	  let _this=this,
-	      _dbg=this._debug;
-	  _this._getRefHash(options["info"]["csc"]).then((out)=>{
-	      _dbg(`${new Date()} EC: ${process.env.EC_SVC_ID} _getAdmHash > out: ${JSON.stringify(out)}`);
-	      return _this._getRefHash(out.stdout);
-	  }).then((out)=>{
-	      _dbg(`${new Date()} EC: ${process.env.EC_SVC_ID} _getRefHash > out: ${JSON.stringify(out)}`);
-	  });
 	});	
     }
 
-    _getRefHash(hsh) {
-	let _this=this,
-	    _dbg=this._debug;
-	return new Promise((reso,reje)=>{	    
-		
-		const ls = spawn('agent', ['-hsh', '-smp'], { env: {...process.env, EC_PPS: hsh }});
-
-		ls.stdout.on('data', (data) => {
-		  reso({stdout: `${data}`});
-		});
-
-		ls.stderr.on('data', (data) => {
-		  reje({stderr: `${data}`});
-		});
-
-		ls.on('close', (code) => {
- 		  _dbg(`${new Date()} EC: ${process.env.EC_SVC_ID} child process (_getAdmHash) exited with code ${code}`);
-		});
-	});
-    }
+    
 	
     init(options){
 
