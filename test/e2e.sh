@@ -62,7 +62,7 @@ cat ./svcs/$EC_SVC_ID.json
 cat << EOF
 
 
-[4] checking endpoints
+[4] endpoints checking
 -------------------------------------
 
  - admin call
