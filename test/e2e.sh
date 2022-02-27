@@ -67,7 +67,7 @@ cat << EOF
 EOF
 
 echo memory profiling /v1.1/health/memory
-curl -u "admin:$EC_ADM_TKN" http://localhost:$PORT/v1.1/health/memory
+curl -u "admin:$EC_ADM_TKN" -sS http://localhost:$PORT/v1.1/health/memory
 
 cat << EOF
 
