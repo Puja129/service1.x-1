@@ -112,6 +112,8 @@ class ECService extends RSSession {
 
 	//persist all info generated so far
 	//_api.setAppSettings();
+	    
+        let _this=this;
 	
 	return (req,res)=>{
 	    
@@ -146,10 +148,10 @@ class ECService extends RSSession {
 		    return obj.res.end(JSON.stringify(obj.data));
 
 		}
-	    }).catch((obj)=>{
-		this._debug(`${new Date()} EC: ${process.env.ZONE} call failed to pickup the call. obj info# ${obj}`);
-		obj.res.writeHead(obj.code);
-		return obj.res.end(JSON.stringify(obj.data));
+	    }).catch((err)=>{
+		_this._debug(`${new Date()} EC: ${process.env.ZONE} call failed to pickup the call. obj info# ${JSON.stringify(err)}`);
+		obj.res.writeHead(501);
+		return obj.res.end(JSON.stringify(err));
 	    });
 	    
 	}
