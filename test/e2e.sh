@@ -67,7 +67,7 @@ cat << EOF
 
  - cognito token validation (sac)
  - Auth Bearer
- - /api/token/validate
+ - /v1.1/api/token/validate
  
 EOF
 
