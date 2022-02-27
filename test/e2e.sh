@@ -62,4 +62,5 @@ cat << EOF
 -------------------------------------
 EOF
 
+echo memory profiling /v1.1/health/memory
 curl http://localhost:$PORT/v1.1/health/memory
