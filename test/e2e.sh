@@ -64,3 +64,11 @@ EOF
 
 echo memory profiling /v1.1/health/memory
 curl http://localhost:$PORT/v1.1/health/memory
+
+cat << EOF
+
+[4] logs dump
+-------------------------------------
+EOF
+
+docker logs -f svc
