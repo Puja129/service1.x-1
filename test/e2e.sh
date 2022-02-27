@@ -25,6 +25,7 @@ cat << EOF
 -------------------------------------
 EOF
 
+PORT=7790
 mkdir -p ./svcs
 docker run --name=svc \
 -e EC_SVC_ID=$EC_SVC_ID \
@@ -38,8 +39,10 @@ docker run --name=svc \
 -e EC_SCRIPT_1=$EC_SCRIPT_1 \
 -e EC_SCRIPT_2=$EC_SCRIPT_2 \
 -e EC_SCRIPT_3=$EC_SCRIPT_3 \
+-e PORT=$PORT \
 -v $(pwd)/svcs:/root/svcs \
 -d \
+-p $PORT:$PORT \
 ghcr.io/ec-release/service:v1.1 &> /dev/null
 
 sleep 10
@@ -52,3 +55,11 @@ EOF
 
 tree ./svcs
 cat ./svcs/$EC_SVC_ID.json
+
+cat << EOF
+
+[4] checking endpoints
+-------------------------------------
+EOF
+
+curl http://localhost:$PORT/v1.1/health/memory
