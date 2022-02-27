@@ -13,7 +13,6 @@
 
 cat << EOF
 
-
 [1] mockup legacy setting
 -------------------------------------
 EOF
@@ -21,7 +20,6 @@ EOF
 EC_SETTING=$(echo '{"my-test-id":{"ids":["my-aid-1","my-aid-2"],"trustedIssuerIds":["legacy-cf-uaa-url"]}}' | base64 -w0)      
 
 cat << EOF
-
 
 [2] launch service instance
 -------------------------------------
@@ -51,7 +49,6 @@ sleep 10
 
 cat << EOF
 
-
 [3] verify serialised service setting 
 -------------------------------------
 EOF
@@ -61,16 +58,15 @@ cat ./svcs/$EC_SVC_ID.json
 
 cat << EOF
 
-
 [4] checking endpoints
 -------------------------------------
+
+ - admin call /v1.1/health/memory
 EOF
 
-echo admin call -> /v1.1/health/memory
 curl -u "admin:$EC_ADM_TKN" -sS http://localhost:$PORT/v1.1/health/memory
 
 cat << EOF
-
 
 [5] logs dump
 -------------------------------------
