@@ -89,7 +89,7 @@ cat << EOF
 EOF
 
 x=1
-while [ $x -le 5 ]
+while [ $x -le 1 ]
 do
   curl -u "admin:$EC_ADM_TKN" -sS -w '\ntotal time taken: %{time_total}s\n' http://localhost:$PORT/v1.1/health/memory
   x=$(( $x + 1 ))
