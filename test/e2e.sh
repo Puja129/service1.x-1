@@ -70,5 +70,4 @@ cat << EOF
 [5] logs dump
 -------------------------------------
 EOF
-
-docker logs -f svc
+docker logs svc --tail 5
