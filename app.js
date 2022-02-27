@@ -29,8 +29,8 @@ var phs=new ECService({
     },
     'user-api-auth':{
 	type:'zac',
-	clientId: process.env.EC_CID,
-	clientSecret: process.env.EC_CSC,
+	//clientId: process.env.EC_CID,
+	//clientSecret: process.env.EC_CSC,
 	//duplicate to EC_SVC_ID    
 	//zacServiceId: process.env.ZAC_SERVICE_ID,
 	zacUrl: `${process.env.EC_SAC_DN}/v1.2beta/ec`,
