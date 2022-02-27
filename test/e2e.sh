@@ -65,23 +65,6 @@ cat << EOF
 [4] endpoints checking
 -------------------------------------
 
- - admin call
- - Auth Basic
- - /v1.1/health/memory
- 
-EOF
-
-x=1
-while [ $x -le 5 ]
-do
-  curl -u "admin:$EC_ADM_TKN" -sS -w '\ntotal time taken: %{time_total}s\n' http://localhost:$PORT/v1.1/health/memory
-  x=$(( $x + 1 ))
-  sleep 1
-done
-
-cat << EOF
-
-
  - cognito token validation (sac)
  - Auth Bearer
  - /api/token/validate
@@ -92,6 +75,23 @@ x=1
 while [ $x -le 1 ]
 do
   curl -sS -H 'Authorization: Bearer my-bearer-token' -w '\ntotal time taken: %{time_total}s\n' http://localhost:$PORT/v1.1/api/token/validate
+  x=$(( $x + 1 ))
+  sleep 1
+done
+
+cat << EOF
+
+
+ - admin call
+ - Auth Basic
+ - /v1.1/health/memory
+ 
+EOF
+
+x=1
+while [ $x -le 5 ]
+do
+  curl -u "admin:$EC_ADM_TKN" -sS -w '\ntotal time taken: %{time_total}s\n' http://localhost:$PORT/v1.1/health/memory
   x=$(( $x + 1 ))
   sleep 1
 done
