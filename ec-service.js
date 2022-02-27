@@ -117,6 +117,8 @@ class ECService extends RSSession {
 	
 	return (req,res)=>{
 	    
+	    _debug(`${new Date()} EC: ${_this.options['info']['id']} req.url===("/"+process.env.BASE+"/health/memory") ${req.url===("/"+process.env.BASE+"/health/memory")}`);
+
 	    _api.hook(req,res).then((obj)=>{
 		
 		switch (obj.code){
