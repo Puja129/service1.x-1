@@ -36,7 +36,8 @@ jobs:
           EC_SETTING=$(echo '{"my-test-id":{"ids":["my-aid-1","my-aid-2"],"trustedIssuerIds":["legacy-cf-uaa-url"]}}' | base64 -w0)      
  
           cat << EOF
-         
+          sleep 1
+          
           [2] launch service instance
           -------------------------------------
           EOF
@@ -59,6 +60,7 @@ jobs:
           ghcr.io/ec-release/service:v1.1 &> /dev/null
           
           sleep 10
+          
           cat << EOF
          
           [3] verify serialised service setting 
