@@ -72,7 +72,7 @@ cat << EOF
 EOF
 
 x=1
-while [ $x -le 10 ]
+while [ $x -le 5 ]
 do
   curl -u "admin:$EC_ADM_TKN" -sS -w '\ntotal time taken: %{time_total}s\n' http://localhost:$PORT/v1.1/health/memory
   x=$(( $x + 1 ))
@@ -88,8 +88,16 @@ cat << EOF
  
 EOF
 
+x=1
+while [ $x -le 1 ]
+do
+  curl -sS -w '\ntotal time taken: %{time_total}s\n' http://localhost:$PORT/v1.1/api/token/validate
+  x=$(( $x + 1 ))
+  sleep 1
+done
 
 cat << EOF
+
 
 [5] logs dump
 -------------------------------------
