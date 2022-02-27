@@ -102,4 +102,4 @@ cat << EOF
 [5] logs dump
 -------------------------------------
 EOF
-docker logs svc --tail 5
+docker logs svc --tail 10
