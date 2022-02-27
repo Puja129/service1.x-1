@@ -61,7 +61,10 @@ cat << EOF
 [4] checking endpoints
 -------------------------------------
 
- - admin call /v1.1/health/memory
+ - admin call
+ - Auth Basic
+ - /v1.1/health/memory
+ 
 EOF
 
 curl -u "admin:$EC_ADM_TKN" -sS http://localhost:$PORT/v1.1/health/memory
