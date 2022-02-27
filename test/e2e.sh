@@ -71,7 +71,13 @@ cat << EOF
  
 EOF
 
-curl -u "admin:$EC_ADM_TKN" -sS http://localhost:$PORT/v1.1/health/memory
+x=1
+while [ $x -le 5 ]
+do
+  curl -u "admin:$EC_ADM_TKN" -sS -w 'total time taken: %{time_total}s\n' http://localhost:$PORT/v1.1/health/memory
+  x=$(( $x + 1 ))
+  sleep 1
+done
 
 cat << EOF
 
