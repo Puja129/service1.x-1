@@ -35,9 +35,7 @@ jobs:
           
           EC_SETTING=$(echo '{"my-test-id":{"ids":["my-aid-1","my-aid-2"],"trustedIssuerIds":["legacy-cf-uaa-url"]}}' | base64 -w0)      
  
-          sleep 1
           cat << EOF
-          
           
           [2] launch service instance
           -------------------------------------
