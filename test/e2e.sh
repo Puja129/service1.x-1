@@ -67,7 +67,7 @@ curl http://localhost:$PORT/v1.1/health/memory
 
 cat << EOF
 
-[4] logs dump
+[5] logs dump
 -------------------------------------
 EOF
 
