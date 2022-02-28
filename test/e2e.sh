@@ -109,7 +109,7 @@ EOF
 x=1
 while [ $x -le 5 ]
 do
-  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] total time taken: %{time_total}s\n" --output /dev/null http://localhost:$PORT/v1.1/api/pubkey
+  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] total time taken: %{time_total}s\n" http://localhost:$PORT/v1.1/api/pubkey
   x=$(( $x + 1 ))
   sleep 1
 done
