@@ -72,12 +72,12 @@ cat << EOF
  
 EOF
 
-x=1
-while [ $x -le 1 ]
+x=5
+while [ $x -le 5 ]
 do
   curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w '\ntotal time taken: %{time_total}s\n' http://localhost:$PORT/v1.1/api/token/validate
   x=$(( $x + 1 ))
-  sleep 1
+  sleep 0.5
 done
 
 cat << EOF
@@ -103,4 +103,4 @@ cat << EOF
 [5] logs dump
 -------------------------------------
 EOF
-docker logs svc --tail 10
+docker logs svc --tail 30
