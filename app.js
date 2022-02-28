@@ -33,8 +33,8 @@ var phs=new ECService({
 	//clientSecret: process.env.EC_CSC,
 	//duplicate to EC_SVC_ID    
 	//zacServiceId: process.env.ZAC_SERVICE_ID,
-	zacUrl: `${process.env.EC_SAC_DN}/v1.2beta/ec`,
-	authUrl: `${process.env.EC_ATH_DN}/oauth/token`
+	zacUrl: `${process.env.EC_SAC_URL}/v1.2beta/ec`,
+	authUrl: `${process.env.EC_ATH_URL}/oauth/token`
     },
     'admin-api-auth':{
 	type:'basic',
