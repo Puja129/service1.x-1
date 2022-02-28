@@ -15,8 +15,9 @@ jobs:
       EC_SVC_ID: my-test-id
       EC_SVC_URL: my-test-url
       EC_ADM_TKN: my-legacy-cf-admin-token
-      EC_SAC_DN: ${{secrets.EC_SAC_DN}}
-      EC_ATH_DN: ${{secrets.EC_ATH_DN}}
+      #e.g. http://localhost:8080
+      EC_SAC_URL: ${{secrets.EC_SAC_URL}}
+      EC_ATH_URL: ${{secrets.EC_ATH_URL}}
       EC_CID: ${{secrets.EC_CID}}
       EC_CSC: ${{secrets.EC_CSC}}
       EC_SCRIPT_1: ${{secrets.EC_SCRIPT_1}}
