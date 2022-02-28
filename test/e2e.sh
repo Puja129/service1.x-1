@@ -14,7 +14,7 @@
 cat << EOF
 
 
-[1] mockup legacy setting
+[i] mockup legacy setting
 -------------------------------------
 EOF
 
@@ -23,7 +23,7 @@ EC_SETTING=$(printf "{\"%s\":{\"ids\":[\"my-aid-1\",\"my-aid-2\"],\"trustedIssue
 cat << EOF
 
 
-[2] launch service instance
+[ii] launch service instance
 -------------------------------------
 EOF
 
@@ -53,7 +53,7 @@ sleep 10
 cat << EOF
 
 
-[3] verify serialised service setting 
+[iii] verify serialised service setting 
 -------------------------------------
 EOF
 
@@ -63,7 +63,7 @@ cat ./svcs/$EC_SVC_ID.json
 cat << EOF
 
 
-[4] endpoints checking
+[iv] endpoints checking
 -------------------------------------
 
  - cognito token validation (sac)
@@ -75,7 +75,7 @@ EOF
 x=1
 while [ $x -le 5 ]
 do
-  curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w '\ntotal time taken: %{time_total}s\n' http://localhost:$PORT/v1.1/api/token/validate
+  curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "\n[$x] total time taken: %{time_total}s\n" http://localhost:$PORT/v1.1/api/token/validate
   x=$(( $x + 1 ))
   sleep 1
 done
@@ -100,7 +100,7 @@ done
 cat << EOF
 
 
-[5] logs dump
+[v] logs dump
 -------------------------------------
 EOF
 docker logs svc --tail 30
