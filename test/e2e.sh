@@ -44,9 +44,11 @@ docker run --name=svc \
 -e EC_SCRIPT_3=$EC_SCRIPT_3 \
 -e PORT=$PORT \
 -v $(pwd)/svcs:/root/svcs \
--d \
 -p $PORT:$PORT \
-ghcr.io/ec-release/service:v1.1 &> /dev/null
+ghcr.io/ec-release/service:v1.1
+: '-d \
+-p $PORT:$PORT \
+ghcr.io/ec-release/service:v1.1 &> /dev/null'
 
 sleep 10
 
