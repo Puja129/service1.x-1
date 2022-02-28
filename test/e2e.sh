@@ -28,13 +28,16 @@ cat << EOF
 EOF
 
 PORT=7790
+EC_SAC_URL=https://$EC_SAC_DN
+EC_ATH_UR=Lhttps://$EC_ATH_DN
 mkdir -p ./svcs
+
 docker run --name=svc \
 -e EC_SVC_ID=$EC_SVC_ID \
 -e EC_SVC_URL=$EC_SVC_URL \
 -e EC_ADM_TKN=$EC_ADM_TKN \
--e EC_SAC_DN=$EC_SAC_DN \
--e EC_ATH_DN=$EC_ATH_DN \
+-e EC_SAC_DN=$EC_SAC_URL \
+-e EC_ATH_DN=$EC_ATH_URL \
 -e EC_CID=$EC_CID \
 -e EC_CSC=$EC_CSC \
 -e EC_SETTING=$EC_SETTING \
