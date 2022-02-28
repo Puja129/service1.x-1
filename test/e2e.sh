@@ -29,7 +29,7 @@ EOF
 
 PORT=7790
 mkdir -p ./svcs
-
+timeout -s 10 10 \
 docker run --name=svc \
 -e EC_SVC_ID=$EC_SVC_ID \
 -e EC_SVC_URL=$EC_SVC_URL \
