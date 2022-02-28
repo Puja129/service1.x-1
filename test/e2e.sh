@@ -29,7 +29,7 @@ EOF
 
 PORT=7790
 mkdir -p ./svcs
-timeout -k 10 10 \
+#timeout -k 10 10 \
 docker run --name=svc \
 -e EC_SVC_ID=$EC_SVC_ID \
 -e EC_SVC_URL=$EC_SVC_URL \
@@ -44,11 +44,9 @@ docker run --name=svc \
 -e EC_SCRIPT_3=$EC_SCRIPT_3 \
 -e PORT=$PORT \
 -v $(pwd)/svcs:/root/svcs \
+-d \
 -p $PORT:$PORT \
-ghcr.io/ec-release/service:v1.1
-: '-d \
--p $PORT:$PORT \
-ghcr.io/ec-release/service:v1.1 &> /dev/null'
+ghcr.io/ec-release/service:v1.1 &> /dev/null
 
 sleep 10
 
