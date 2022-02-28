@@ -77,7 +77,7 @@ while [ $x -le 5 ]
 do
   curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w '\ntotal time taken: %{time_total}s\n' http://localhost:$PORT/v1.1/api/token/validate
   x=$(( $x + 1 ))
-  sleep 0.5
+  sleep 1
 done
 
 cat << EOF
