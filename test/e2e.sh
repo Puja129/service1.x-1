@@ -73,7 +73,7 @@ cat << EOF
 EOF
 
 x=1
-while [ $x -le 5 ]
+while [ $x -le 50 ]
 do
   curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "\n[$x] total time taken: %{time_total}s\n" http://localhost:$PORT/v1.1/api/token/validate
   x=$(( $x + 1 ))
@@ -90,7 +90,7 @@ cat << EOF
 EOF
 
 x=1
-while [ $x -le 5 ]
+while [ $x -le 50 ]
 do
   curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] total time taken: %{time_total}s\n" http://localhost:$PORT/v1.1/health/memory
   x=$(( $x + 1 ))
@@ -107,7 +107,7 @@ cat << EOF
 EOF
 
 x=1
-while [ $x -le 5 ]
+while [ $x -le 50 ]
 do
   curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] total time taken: %{time_total}s (test content discarded)\n" --output /dev/null http://localhost:$PORT/v1.1/api/pubkey
   x=$(( $x + 1 ))
