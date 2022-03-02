@@ -1,5 +1,8 @@
 name: Test Service 1.1 (Beta)
 on:
+  schedule:
+    #NY 23:00pm
+    - cron: '0 3 * * *'
   workflow_dispatch:
   #push:
   #  branches: [ 0.1-b.1, main ]
