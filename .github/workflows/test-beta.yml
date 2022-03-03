@@ -29,4 +29,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Launch Service 1.1 (Beta)
-        run: chmod +x ./test/e2e.sh && ./test/e2e.sh
+        #run: chmod +x ./test/e2e.sh && ./test/e2e.sh
+        run: timeout --version
