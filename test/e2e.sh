@@ -19,7 +19,7 @@ cat << EOF
 EOF
 source <(wget -O - https://raw.githubusercontent.com/EC-Release/sdk/disty/scripts/libs/db.sh)
 crdj=$(getCredJson "cred.json" "$EC_GITHUB_TOKEN")
-CA_PPS=$(echo $crdj | jq -r ".svcE2ETest.ownerHash")
+
 
 cat << EOF
 
@@ -37,6 +37,7 @@ cat << EOF
 -------------------------------------
 EOF
 
+CA_PPS=$(echo $crdj | jq -r ".svc1_1Test.ownerHash")
 PORT=7790
 mkdir -p ./svcs
 #timeout -k 10 10 \
@@ -66,6 +67,7 @@ cat << EOF
 -------------------------------------
 EOF
 
+CA_PPS=$(echo $crdj | jq -r ".agt4Svc1_1Test.ownerHash")
 docker run \
 -e AGENT_REV=v1.hokkaido.213 \
 -e EC_PPS=$CA_PPS ghcr.io/ec-release/oci/agent:v1 -ver
