@@ -28,6 +28,7 @@ jobs:
       EC_SCRIPT_1: ${{secrets.EC_SCRIPT_1}}
       EC_SCRIPT_2: ${{secrets.EC_SCRIPT_2}}
       EC_SCRIPT_3: ${{secrets.EC_SCRIPT_3}}
+      EC_GITHUB_TOKEN: ${{secrets.MY_GITHUB_TKN}}
     steps:
       - uses: actions/checkout@v2
       - name: Launch Service 1.1 (Beta)
