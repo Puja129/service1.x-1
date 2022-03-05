@@ -23,7 +23,8 @@ crdj=$(getCredJson "cred.json" "$EC_GITHUB_TOKEN")
 EC_CID=$(echo $crdj | jq -r ".svc1_1Test.devId")
 EC_CSC=$(echo $crdj | jq -r ".svc1_1Test.ownerHash")
 btkn=$(getSdcTkn "$EC_CID" "$EC_CSC" "$EC_ATH_URL")
-tdat=$(printf '{"e2e":"test","status":"ok","round":"5"}' | jq -aRs .)
+tdat=$(printf '{"e2e":"test","status":"ok","round":"5"}')
+echo $tdat
 insertData "$EC_SAC_URL" "my test" "$btkn" "$tdat"
 exit 0
 
