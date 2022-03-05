@@ -16,7 +16,9 @@ jobs:
     environment: dev
     env:
       EC_SVC_ID: my-test-id
-      EC_SVC_URL: my-test-url
+      EC_SVC_URL_PUB: my-test-public-url
+      #e.g. urlhttp://svc-id.ec-engineering.svc.cluster.local:18090
+      EC_SVC_URL_NAT: my-test-nat-url
       EC_ADM_TKN: my-legacy-cf-admin-token
       #e.g. http://localhost:8080
       EC_SAC_URL: ${{secrets.EC_SAC_URL}}
