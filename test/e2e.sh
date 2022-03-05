@@ -21,7 +21,6 @@ source <(wget -O - https://raw.githubusercontent.com/EC-Release/sdk/disty/script
 crdj=$(getCredJson "cred.json" "$EC_GITHUB_TOKEN")
 CA_PPS=$(echo $crdj | jq -r ".svcE2ETest.ownerHash")
 
-exit 0
 cat << EOF
 
 
