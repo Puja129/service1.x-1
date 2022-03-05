@@ -28,7 +28,7 @@ cat << EOF
 -------------------------------------
 EOF
 
-EC_SETTING=$(printf "{\"%s\":{\"ids\":[\"my-aid-1\",\"my-aid-2\"],\"trustedIssuerIds\":[\"legacy-cf-uaa-url\"]}}" "$EC_SVC_ID" | base64 -w0)      
+EC_SETTING=$(printf '{"%s":{"ids":["my-aid-1","my-aid-2"],"trustedIssuerIds":["legacy-cf-uaa-url"]}}' "$EC_SVC_ID" | jq -aRs . | base64 -w0)      
 
 cat << EOF
 
