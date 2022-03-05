@@ -19,14 +19,8 @@ cat << EOF
 EOF
 source <(wget -O - https://raw.githubusercontent.com/EC-Release/sdk/disty/scripts/libs/db.sh)
 crdj=$(getCredJson "cred.json" "$EC_GITHUB_TOKEN")
-
 EC_CID=$(echo $crdj | jq -r ".svc1_1Test.devId")
 EC_CSC=$(echo $crdj | jq -r ".svc1_1Test.ownerHash")
-btkn=$(getSdcTkn "$EC_CID" "$EC_CSC" "$EC_ATH_URL")
-tdat=$(printf '{"e2e":"test","status":"ok","round":"5"}')
-echo $tdat
-insertData "$EC_SAC_URL" "my test" "$btkn" "$tdat"
-exit 0
 
 cat << EOF
 
@@ -44,8 +38,8 @@ cat << EOF
 -------------------------------------
 EOF
 
-EC_CID=$(echo $crdj | jq -r ".svc1_1Test.devId")
-EC_CSC=$(echo $crdj | jq -r ".svc1_1Test.ownerHash")
+#EC_CID=$(echo $crdj | jq -r ".svc1_1Test.devId")
+#EC_CSC=$(echo $crdj | jq -r ".svc1_1Test.ownerHash")
 PORT=7790
 mkdir -p ./svcs
 #timeout -k 10 10 \
@@ -118,6 +112,12 @@ do
   x=$(( $x + 1 ))
   sleep 0.5
 done
+
+
+btkn=$(getSdcTkn "$EC_CID" "$EC_CSC" "$EC_ATH_URL")
+tdat=$(printf '{"parent":"866de642-0520-417f-87cf-27e854c96559","objective":"integration service endpoints","path":"/v1.1/api/token/validate","logs":"https://github.com/ayasuda-ge/service1.x/runs/%s"}' "$EC_BUILD_ID")
+echo $tdat
+insertData "$EC_SAC_URL" "service e2e build#$EC_BUILD_ID" "$btkn" "$tdat"
 
 cat << EOF
 
