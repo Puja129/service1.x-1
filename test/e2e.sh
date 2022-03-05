@@ -15,7 +15,7 @@
 -------------------------------------
 source <(wget -O - https://raw.githubusercontent.com/EC-Release/sdk/disty/scripts/libs/db.sh)
 crdj=$(getCredJson "cred.json" "$EC_GITHUB_TOKEN")
-CA_PPS=$(echo $crdj | jq -r ".${PROJECT_ID}.ownerHash")
+CA_PPS=$(echo $crdj | jq -r ".svcE2ETest.ownerHash")
 
 cat << EOF
 
