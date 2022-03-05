@@ -21,6 +21,7 @@ source <(wget -O - https://raw.githubusercontent.com/EC-Release/sdk/disty/script
 crdj=$(getCredJson "cred.json" "$EC_GITHUB_TOKEN")
 CA_PPS=$(echo $crdj | jq -r ".svcE2ETest.ownerHash")
 
+exit 0
 cat << EOF
 
 
@@ -68,7 +69,7 @@ EOF
 
 docker run \
 -e AGENT_REV=v1.hokkaido.213 \
--e EC_PPS=$CA_PPS -it ghcr.io/ec-release/oci/agent:v1 -ver
+-e EC_PPS=$CA_PPS ghcr.io/ec-release/oci/agent:v1 -ver
 
 cat << EOF
 
