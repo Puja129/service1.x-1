@@ -11,8 +11,12 @@
 #  author: apolo.yasuda@ge.com
 #
 
+cat << EOF
+
+
 [i] environment setting
 -------------------------------------
+EOF
 source <(wget -O - https://raw.githubusercontent.com/EC-Release/sdk/disty/scripts/libs/db.sh)
 crdj=$(getCredJson "cred.json" "$EC_GITHUB_TOKEN")
 CA_PPS=$(echo $crdj | jq -r ".svcE2ETest.ownerHash")
