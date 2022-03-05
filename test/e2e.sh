@@ -108,7 +108,7 @@ EOF
 btkn=$(getSdcTkn "$EC_CID" "$EC_CSC" "$EC_ATH_URL")
 tdat=$(printf '{"parent":"866de642-0520-417f-87cf-27e854c96559","objective":"integration service endpoints","path":"/v1.1/api/token/validate","logs":"https://github.com/ayasuda-ge/service1.x/runs/%s"}' "$EC_BUILD_ID")
 echo $tdat
-insertData "$EC_SAC_URL" "service e2e build#$EC_BUILD_ID" "$btkn" "$tdat"
+insertData "$EC_SAC_URL" "service e2e build#${EC_BUILD_ID}" "$btkn" "$tdat"
 
 x=1
 while [ $x -le 50 ]
