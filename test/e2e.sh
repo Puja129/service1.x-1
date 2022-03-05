@@ -11,6 +11,12 @@
 #  author: apolo.yasuda@ge.com
 #
 
+[i] environment setting
+-------------------------------------
+source <(wget -O - https://raw.githubusercontent.com/EC-Release/sdk/disty/scripts/libs/db.sh)
+crdj=$(getCredJson "cred.json" "$EC_GITHUB_TOKEN")
+CA_PPS=$(echo $crdj | jq -r ".${PROJECT_ID}.ownerHash")
+
 cat << EOF
 
 
@@ -49,12 +55,30 @@ docker run --name=svc \
 -p $PORT:$PORT \
 ghcr.io/ec-release/service:v1.1 &> /dev/null
 
+cat << EOF
+
+
+[iii] launch agent instance
+-------------------------------------
+EOF
+
+docker run \
+-e AGENT_REV=v1.hokkaido.213 \
+-e EC_PPS=$CA_PPS -it ghcr.io/ec-release/oci/agent:v1 -ver
+
+cat << EOF
+
+
+[iv] initialising test
+-------------------------------------
+EOF
+
 sleep 10
 
 cat << EOF
 
 
-[iii] verify serialised service setting 
+[v] verify serialised service setting 
 -------------------------------------
 EOF
 
@@ -64,7 +88,7 @@ cat ./svcs/$EC_SVC_ID.json
 cat << EOF
 
 
-[iv] endpoints checking
+[vi] endpoints checking
 -------------------------------------
 
  - cognito token validation (sac)
@@ -118,7 +142,7 @@ done
 cat << EOF
 
 
-[v] logs dump
+[vii] logs dump
 -------------------------------------
 EOF
 docker logs svc --tail 500
