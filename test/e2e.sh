@@ -37,7 +37,8 @@ cat << EOF
 -------------------------------------
 EOF
 
-CA_PPS=$(echo $crdj | jq -r ".svc1_1Test.ownerHash")
+EC_CID=$(echo $crdj | jq -r ".svc1_1Test.devId")
+EC_CSC=$(echo $crdj | jq -r ".svc1_1Test.ownerHash")
 PORT=7790
 mkdir -p ./svcs
 #timeout -k 10 10 \
