@@ -114,7 +114,8 @@ insertData "$EC_SAC_URL" "service e2e build\#${EC_BUILD_ID}" "$btkn" "$tdat"
 x=1
 while [ $x -le 50 ]
 do
-  curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "\n[$x] total time taken: %{time_total}s\n" http://localhost:$PORT/v1.1/api/token/validate
+  ts=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total}" -o /dev/null -v "http://localhost:$PORT/v1.1/api/token/validate")
+  printf "\n[%s] total time taken: %s sec.\n" "$x" "$ts"
   x=$(( $x + 1 ))
   sleep 0.5
 done
