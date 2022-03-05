@@ -91,7 +91,7 @@ cat << EOF
 EOF
 
 tree ./svcs
-#cat ./svcs/$EC_SVC_ID.json
+cat ./svcs/$EC_SVC_ID.json
 
 cat << EOF
 
