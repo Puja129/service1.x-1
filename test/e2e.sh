@@ -20,7 +20,7 @@ CA_PPS=$(echo $crdj | jq -r ".svcE2ETest.ownerHash")
 cat << EOF
 
 
-[i] mockup legacy setting
+[ii] mockup legacy setting
 -------------------------------------
 EOF
 
@@ -29,7 +29,7 @@ EC_SETTING=$(printf "{\"%s\":{\"ids\":[\"my-aid-1\",\"my-aid-2\"],\"trustedIssue
 cat << EOF
 
 
-[ii] launch service instance
+[iii] launch service instance
 -------------------------------------
 EOF
 
@@ -58,7 +58,7 @@ ghcr.io/ec-release/service:v1.1 &> /dev/null
 cat << EOF
 
 
-[iii] launch agent instance
+[iv] launch agent instance
 -------------------------------------
 EOF
 
@@ -69,7 +69,7 @@ docker run \
 cat << EOF
 
 
-[iv] initialising test
+[v] initialising test
 -------------------------------------
 EOF
 
@@ -78,7 +78,7 @@ sleep 10
 cat << EOF
 
 
-[v] verify serialised service setting 
+[vi] verify serialised service setting 
 -------------------------------------
 EOF
 
@@ -88,7 +88,7 @@ cat ./svcs/$EC_SVC_ID.json
 cat << EOF
 
 
-[vi] endpoints checking
+[vii] endpoints checking
 -------------------------------------
 
  - cognito token validation (sac)
