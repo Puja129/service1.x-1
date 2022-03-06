@@ -39,8 +39,6 @@ cat << EOF
 -------------------------------------
 EOF
 
-#EC_CID=$(echo $crdj | jq -r ".svc1_1Test.devId")
-#EC_CSC=$(echo $crdj | jq -r ".svc1_1Test.ownerHash")
 PORT=7790
 mkdir -p ./svcs
 #timeout -k 10 10 \
@@ -113,11 +111,11 @@ do
   ts=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total}" -o /dev/null "http://localhost:$PORT/v1.1/api/token/validate")
   printf "\n[%s] total time taken: %s sec.\n" "$x" "$ts"
   x=$(( $x + 1 ))
-  y=$(( $y + $ts ))
+  y=$(awk "BEGIN{print $y+$ts}")
   sleep 0.5
 done
 
-y=$(( $y / $count))
+y=$(awk "BEGIN{print $y/$count}")
 
 btkn=$(getSdcTkn "$EC_CID" "$EC_CSC" "$EC_ATH_URL")
 tdat=$(printf '{"parent":"%s","averagedTime":"%s","numOfRuns":"%s","objective":"integration service endpoints","path":"/v1.1/api/token/validate","logs":"https://github.com/ayasuda-ge/service1.x/actions/runs/%s"}' "06ba9042-3b53-4b77-b71d-cd6f6417a4b2" "$y" "$count" "$GITHUB_RUN_ID")
