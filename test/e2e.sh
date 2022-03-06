@@ -107,7 +107,7 @@ cat << EOF
 EOF
 
 btkn=$(getSdcTkn "$EC_CID" "$EC_CSC" "$EC_ATH_URL")
-tdat=$(printf '{"parent":"06ba9042-3b53-4b77-b71d-cd6f6417a4b2","objective":"integration service endpoints","path":"/v1.1/api/token/validate","logs":"https://github.com/ayasuda-ge/service1.x/runs/%s"}' "$GITHUB_RUN_ID")
+tdat=$(printf '{"parent":"06ba9042-3b53-4b77-b71d-cd6f6417a4b2","objective":"integration service endpoints","path":"/v1.1/api/token/validate","logs":"https://github.com/ayasuda-ge/service1.x/actions/runs/%s"}' "$GITHUB_RUN_ID")
 echo $tdat
 insertData "$EC_SAC_URL" "service e2e build [$EC_BUILD_ID]" "$btkn" "$tdat"
 
