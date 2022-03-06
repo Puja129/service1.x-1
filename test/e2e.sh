@@ -106,19 +106,23 @@ cat << EOF
  
 EOF
 
-btkn=$(getSdcTkn "$EC_CID" "$EC_CSC" "$EC_ATH_URL")
-tdat=$(printf '{"parent":"06ba9042-3b53-4b77-b71d-cd6f6417a4b2","objective":"integration service endpoints","path":"/v1.1/api/token/validate","logs":"https://github.com/ayasuda-ge/service1.x/actions/runs/%s"}' "$GITHUB_RUN_ID")
-echo $tdat
-insertData "$EC_SAC_URL" "service e2e build [$EC_BUILD_ID]" "$btkn" "$tdat"
 
-x=1
-while [ $x -le 50 ]
+x=1; y=0; count=50
+while [ $x -le $count ]
 do
   ts=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total}" -o /dev/null "http://localhost:$PORT/v1.1/api/token/validate")
   printf "\n[%s] total time taken: %s sec.\n" "$x" "$ts"
   x=$(( $x + 1 ))
+  y=$(( $y + $ts ))
   sleep 0.5
 done
+
+y=$(( $y / $count))
+
+btkn=$(getSdcTkn "$EC_CID" "$EC_CSC" "$EC_ATH_URL")
+tdat=$(printf '{"parent":"%s","averagedTime":"%s","numOfRuns":"%s","objective":"integration service endpoints","path":"/v1.1/api/token/validate","logs":"https://github.com/ayasuda-ge/service1.x/actions/runs/%s"}' "06ba9042-3b53-4b77-b71d-cd6f6417a4b2" "$y" "$count" "$GITHUB_RUN_ID")
+echo $tdat
+insertData "$EC_SAC_URL" "service e2e build [$EC_BUILD_ID]" "$btkn" "$tdat"
 
 cat << EOF
 
