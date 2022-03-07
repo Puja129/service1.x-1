@@ -11,8 +11,7 @@ var phs=new ECService({
 	    legacy_setting: process.env.EC_SETTING,
 	    legacy_adm_tkn: process.env.EC_ADM_TKN,
 	    cid: process.env.EC_CID,
-	    csc: process.env.EC_CSC,
-	    pxy_ver: "v1.2beta"
+	    csc: process.env.EC_CSC
     },
     
     //deprecated
