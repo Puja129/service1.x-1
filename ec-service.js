@@ -171,7 +171,15 @@ class ECService extends RSSession {
 	    
             if (req.url.indexOf(`/${this._options["info"]["pxy_ver"]}`)>-1){
 	      _this._debug(`${new Date()} EC: ${process.env.ZONE} request proxied. req.url: ${req.url} req.method: ${req.method}`);
-	      req.socket.end();
+	      const serverSocket = net.connect(80, 'www.google.com', () => {
+		    //clientSocket.write('HTTP/1.1 200 Connection Established\r\n' +
+		    //		    'Proxy-agent: Node.js-Proxy\r\n' +
+		    //		    '\r\n');
+		    //serverSocket.write(head);
+		    serverSocket.pipe(req.socket);
+		    req.socket.pipe(serverSocket);
+	      });
+	      //req.socket.end();
 	      req.socket.on('close',(err)=>{
 		debug(`${new Date()} EC: ${process.env.ZONE} socket closed err:${err}. req.url: ${req.url} req.method: ${req.method}`);	  
 	      });	
