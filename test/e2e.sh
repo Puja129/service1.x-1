@@ -93,7 +93,8 @@ tree ./svcs
 cat ./svcs/$EC_SVC_ID.json
 
 # beging proxy test
-curl http://localhost:$PORT/v1.2beta
+curl http://localhost:$PORT/v1.2beta > .tmp
+cat .tmp
 docker logs svc --tail 500
 exit 0
 # end proxy test
