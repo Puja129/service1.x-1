@@ -130,7 +130,7 @@ class ECService extends RSSession {
 	  });
 	});*/
 	httpServer.on('connect', (req, clientSocket, head) => {
-          _this._debug(`${new Date()} EC: ${process.env.ZONE} connect emitted. req.url: ${req.url} req.method: ${req.method}`);
+          debug(`${new Date()} EC: ${process.env.ZONE} connect emitted. req.url: ${req.url} req.method: ${req.method}`);
 	  // Connect to an origin server
 	  /*const { port, hostname } = new URL(`http://${req.url}`);
 	  const serverSocket = net.connect(port || 80, hostname, () => {
