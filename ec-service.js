@@ -129,12 +129,13 @@ class ECService extends RSSession {
 	    s.pipe(serverSocket);
 	  });
 	});*/
-	httpServer.on('connect', (req, clientSocket, head) => {
+	/*httpServer.on('connect', (req, clientSocket, head) => {
           debug(`${new Date()} EC: ${process.env.ZONE} connect emitted. ending socket connection. req.url: ${req.url} req.method: ${req.method}`);
 	  clientSocket.end();
           clientSocket.on('close',(err)=>{
 	  	debug(`${new Date()} EC: ${process.env.ZONE} socket closed err:${err}. req.url: ${req.url} req.method: ${req.method}`);	  
 	  });
+	});*/
 	  // Connect to an origin server
 	  /*const { port, hostname } = new URL(`http://${req.url}`);
 	  const serverSocket = net.connect(port || 80, hostname, () => {
@@ -145,7 +146,7 @@ class ECService extends RSSession {
 	    serverSocket.pipe(clientSocket);
 	    clientSocket.pipe(serverSocket);
 	  });*/
-	});
+	
 	    
 	httpServer.listen(options.localPort, _=> {
 	    debug(`${new Date()} EC: ${options["info"]["id"]} EC service is listening on port#${options.localPort}`);
@@ -170,7 +171,10 @@ class ECService extends RSSession {
 	    
             if (req.url.indexOf(`/${this._options["info"]["pxy_ver"]}`)>-1){
 	      _this._debug(`${new Date()} EC: ${process.env.ZONE} request proxied. req.url: ${req.url} req.method: ${req.method}`);
-		
+	      req.socket.end();
+	      req.socket.on('close',(err)=>{
+		debug(`${new Date()} EC: ${process.env.ZONE} socket closed err:${err}. req.url: ${req.url} req.method: ${req.method}`);	  
+	      });	
 	      return;
 	    }
 	    //debug(`${new Date()} EC: ${_this._options['info']['id']} req.url===("/"+process.env.BASE+"/health/memory") ${req.url===("/"+process.env.BASE+"/health/memory")}`);
