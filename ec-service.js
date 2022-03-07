@@ -96,6 +96,24 @@ class ECService extends RSSession {
 	    httpServer = http.createServer(this.failAuth(debug));
 	}
 	
+	httpServer.on('connect', (req, clientSocket, head) => {
+		
+	  const { pathname } = new URL(`http://${req.url}`);
+          if (pathname.indexOf(`/${options['info']['pxy_ver']}`)>-1){
+	    debug(`${new Date()} EC: ${options["info"]["id"]} request pathname: ${pathname} proxied.`);
+	  }
+	  //const serverSocket = net.connect(port || 80, hostname, () => {
+            
+	    
+	    /*clientSocket.write('HTTP/1.1 200 Connection Established\r\n' +
+			    'Proxy-agent: Node.js-Proxy\r\n' +
+			    '\r\n');
+	    serverSocket.write(head);
+	    serverSocket.pipe(clientSocket);
+	    clientSocket.pipe(serverSocket);*/
+	  //});
+	});
+	    
 	httpServer.listen(options.localPort, _=> {
 	    debug(`${new Date()} EC: ${options["info"]["id"]} EC service is listening on port#${options.localPort}`);
 	    this.emit(`service_listening`);
