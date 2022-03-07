@@ -98,8 +98,8 @@ class ECService extends RSSession {
 	
 	httpServer.on('connect', (req, clientSocket, head) => {
 		
-	  const { pathname } = new URL(`http://${req.url}`);
-          if (pathname.indexOf(`/${options['info']['pxy_ver']}`)>-1){
+	  //const { pathname } = new URL(`http://${req.url}`);
+          if (req.url.indexOf(`/${options['info']['pxy_ver']}`)>-1){
 	    debug(`${new Date()} EC: ${options["info"]["id"]} request pathname: ${pathname} proxied.`);
 	  }
 	  //const serverSocket = net.connect(port || 80, hostname, () => {
