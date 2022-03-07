@@ -73,6 +73,28 @@ docker run \
 -e AGENT_REV=v1.hokkaido.213 \
 -e EC_PPS=$CA_PPS ghcr.io/ec-release/oci/agent:v1 -ver
 
+: 'GTW_TKN=$(printf "admin:%s" "$SvcTkn" | base64 -w0)
+GTW_PRT="7991"
+GTW_URL="http://localhost:$GTW_PRT"
+SVC_URL="http://localhost:$PORT"
+
+agent \
+-tkn "$GTW_TKN" \
+-sst "$SVC_URL" \
+-hst "$GTW_URL" \
+-mod "gateway" \
+-prt "$GTW_PRT"
+
+agent \
+-cid "my-cognito-client-id" \
+-csc "my-cognito-client-secret" \
+-oa2 "my-cognito-tkn-url" \
+-sst "$SVC_URL" \
+-hst "$GTW_URL" \
+-mod "server" \
+-dbg'
+
+
 cat << EOF
 
 
@@ -92,13 +114,6 @@ EOF
 tree ./svcs
 cat ./svcs/$EC_SVC_ID.json
 
-# beging proxy test
-curl http://localhost:$PORT/v1.2beta > .tmp
-cat .tmp
-docker logs svc --tail 500
-exit 0
-# end proxy test
-
 cat << EOF
 
 
@@ -110,6 +125,13 @@ cat << EOF
  - /v1.1/api/token/validate
  
 EOF
+
+# beging proxy test
+curl http://localhost:$PORT/v1.2beta > .tmp
+cat .tmp
+docker logs svc --tail 500
+exit 0
+# end proxy test
 
 x=1; y=0; count=50
 while [ $x -le $count ]
