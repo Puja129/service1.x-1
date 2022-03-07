@@ -92,6 +92,12 @@ EOF
 tree ./svcs
 cat ./svcs/$EC_SVC_ID.json
 
+# beging proxy test
+curl http://localhost:$PORT/v1.2beta
+docker logs svc --tail 500
+exit 0
+# end proxy test
+
 cat << EOF
 
 
@@ -103,7 +109,6 @@ cat << EOF
  - /v1.1/api/token/validate
  
 EOF
-
 
 x=1; y=0; count=50
 while [ $x -le $count ]
