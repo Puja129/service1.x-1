@@ -179,9 +179,17 @@ class ECService extends RSSession {
 		    serverSocket.pipe(req.socket);
 		    req.socket.pipe(serverSocket);
 	      });
+	      serverSocket.on('end',_=>{
+	        debug(`${new Date()} EC: ${_this._options["info"]["id"]} server socket ended.`);
+		req.socket.end();
+	      });
+	      serverSocket.on('close',_=>{
+	        debug(`${new Date()} EC: ${_this._options["info"]["id"]} server socket closed.`);
+		req.socket.end();
+	      });
 	      //req.socket.end();
 	      req.socket.on('close',(err)=>{
-		debug(`${new Date()} EC: ${process.env.ZONE} socket closed err:${err}. req.url: ${req.url} req.method: ${req.method}`);	  
+		debug(`${new Date()} EC: ${_this._options["info"]["id"]} req socket closed err:${err}. req.url: ${req.url} req.method: ${req.method}`);	  
 	      });	
 	      return;
 	    }
