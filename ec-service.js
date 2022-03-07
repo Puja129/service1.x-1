@@ -164,7 +164,7 @@ class ECService extends RSSession {
 	
 	return (req,res)=>{
 	    
-            if (req.url.indexOf(`/${this._options["info"]["pxy_ver"]}`)>-1{
+            if (req.url.indexOf(`/${this._options["info"]["pxy_ver"]}`)>-1){
 	      _this._debug(`${new Date()} EC: ${process.env.ZONE} request proxied. req.url: ${req.url} req.method: ${req.method}`);
 		
 	      return;
