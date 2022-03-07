@@ -125,29 +125,29 @@ class ECService extends RSSession {
 		case 200:
 		case 201:
 		    if (obj.content){
-			return obj.res.end(obj.content);
+			return res.end(obj.content);
 		    }	    
 
-		    obj.res.writeHead(obj.code,{"Content-Type": "application/json"});
-		    return obj.res.end(JSON.stringify(obj.data));
+		    res.writeHead(obj.code,{"Content-Type": "application/json"});
+		    return res.end(JSON.stringify(obj.data));
 		case 202:
 		case 501:		  
-		    obj.res.writeHead(obj.code,{"Content-Type": "application/json"});
-		    return obj.res.end(JSON.stringify(obj.data));
+		    res.writeHead(obj.code,{"Content-Type": "application/json"});
+		    return res.end(JSON.stringify(obj.data));
 
 		
 		case 301:
 		    //redirect
-		    return obj.res.end();
+		    return res.end();
 		    
 		case 401:
-		    obj.res.writeHead(obj.code,obj.headers);
-		    return obj.res.end(JSON.stringify(obj.data));
+		    res.writeHead(obj.code,obj.headers);
+		    return res.end(JSON.stringify(obj.data));
 
 		case 404:
 		default:
-		    obj.res.writeHead(obj.code,{"Content-Type": "application/json"});
-		    return obj.res.end(JSON.stringify(obj.data));
+		    res.writeHead(obj.code,{"Content-Type": "application/json"});
+		    return res.end(JSON.stringify(obj.data));
 
 		}
 	    }).catch((err)=>{
