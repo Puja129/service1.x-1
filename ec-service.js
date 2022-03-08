@@ -96,58 +96,6 @@ class ECService extends RSSession {
 	    httpServer = http.createServer(this.failAuth(debug));
 	}
 	    
-	/*
-	if (req.url===("/"+_this._options["info"]["pxy_ver"])){
-	       const serverSocket = net.connect(80, "www.google.com", () => {
-            
-	          serverSocket.pipe(req.socket);
-	          res.socket.pipe(serverSocket);
-	        });
-
-		//serverSocket.on('data', (data) => {
-	        //  res.write(data);
-		//  return reso({res:res,data:"proxy called",code:200});
-		//});
-		    
-	        serverSocket.on('end', () => {
-		  return reso({});
-		});
-		    
-	       //_dbg(`${new Date()} EC: ${_this._options['info']['id']}. /${_this._options["info"]["pxy_ver"]} called.`);	    
-	       //return reso({res:res,data:"proxy called",code:200});
-	    }
-	*/
-	/*httpServer.on('socket', (s) => {
-	  // Connect to an origin server
-	  //const { port, hostname } = new URL(`http://${req.url}`);
-	  const serverSocket = net.connect(80, "www.google.com", () => {
-	    clientSocket.write('HTTP/1.1 200 Connection Established\r\n' +
-			    'Proxy-agent: Node.js-Proxy\r\n' +
-			    '\r\n');
-	    serverSocket.write(head);
-	    serverSocket.pipe(s);
-	    s.pipe(serverSocket);
-	  });
-	});*/
-	/*httpServer.on('connect', (req, clientSocket, head) => {
-          debug(`${new Date()} EC: ${process.env.ZONE} connect emitted. ending socket connection. req.url: ${req.url} req.method: ${req.method}`);
-	  clientSocket.end();
-          clientSocket.on('close',(err)=>{
-	  	debug(`${new Date()} EC: ${process.env.ZONE} socket closed err:${err}. req.url: ${req.url} req.method: ${req.method}`);	  
-	  });
-	});*/
-	  // Connect to an origin server
-	  /*const { port, hostname } = new URL(`http://${req.url}`);
-	  const serverSocket = net.connect(port || 80, hostname, () => {
-	    clientSocket.write('HTTP/1.1 200 Connection Established\r\n' +
-			    'Proxy-agent: Node.js-Proxy\r\n' +
-			    '\r\n');
-	    serverSocket.write(head);
-	    serverSocket.pipe(clientSocket);
-	    clientSocket.pipe(serverSocket);
-	  });*/
-	
-	    
 	httpServer.listen(options.localPort, _=> {
 	    debug(`${new Date()} EC: ${options["info"]["id"]} EC service is listening on port#${options.localPort}`);
 	    this.emit(`service_listening`);
@@ -169,13 +117,9 @@ class ECService extends RSSession {
 	
 	return (req,res)=>{
 	    
-            if (req.url.indexOf(`/${this._options["info"]["pxy_ver"]}`)>-1){
+            /*if (req.url.indexOf(`/${this._options["info"]["pxy_ver"]}`)>-1){
 	      _this._debug(`${new Date()} EC: ${process.env.ZONE} request proxied. req.url: ${req.url} req.method: ${req.method}`);
 	      const serverSocket = net.connect(80, 'www.google.com', () => {
-		    //clientSocket.write('HTTP/1.1 200 Connection Established\r\n' +
-		    //		    'Proxy-agent: Node.js-Proxy\r\n' +
-		    //		    '\r\n');
-		    //serverSocket.write(head);
 		    serverSocket.pipe(req.socket);
 		    req.socket.pipe(serverSocket);
 	      });
@@ -187,12 +131,15 @@ class ECService extends RSSession {
 	        debug(`${new Date()} EC: ${_this._options["info"]["id"]} server socket closed.`);
 		req.socket.end();
 	      });
-	      //req.socket.end();
+	      serverSocket.on('close',_=>{
+	        debug(`${new Date()} EC: ${_this._options["info"]["id"]} server socket closed.`);
+		req.socket.end();
+	      });
 	      req.socket.on('close',(err)=>{
 		debug(`${new Date()} EC: ${_this._options["info"]["id"]} req socket closed err:${err}. req.url: ${req.url} req.method: ${req.method}`);	  
 	      });	
 	      return;
-	    }
+	    }*/
 	    //debug(`${new Date()} EC: ${_this._options['info']['id']} req.url===("/"+process.env.BASE+"/health/memory") ${req.url===("/"+process.env.BASE+"/health/memory")}`);
 
 	    _api.hook(req,res).then((obj)=>{
