@@ -24,7 +24,7 @@ EC_CSC=$(echo $crdj | jq -r ".svc1_1Test.ownerHash")
 
 btkn=$(getSdcTkn "$EC_CID" "$EC_CSC" "$EC_ATH_URL")
 echo btkn: $btkn
-tdat=$(printf '{"parent":"06ba9042-3b53-4b77-b71d-cd6f6417a4b2":"hello":"test"}')
+tdat=$(printf '{"parent":"06ba9042-3b53-4b77-b71d-cd6f6417a4b2","hello":"test"}')
 echo $tdat
 insertData "$EC_SAC_URL" "service e2e build [$EC_BUILD_ID]" "$btkn" "$tdat"
 
