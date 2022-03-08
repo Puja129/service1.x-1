@@ -127,10 +127,10 @@ cat << EOF
 EOF
 
 # beging proxy test
-curl http://localhost:$PORT/v1.2beta > .tmp
+: 'curl http://localhost:$PORT/v1.2beta > .tmp
 cat .tmp
 docker logs svc --tail 500
-exit 0
+exit 0'
 # end proxy test
 
 x=1; y=0; count=50
