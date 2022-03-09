@@ -17,7 +17,7 @@ cat << EOF
 [i] environment setting
 -------------------------------------
 EOF
-source <(wget -O - https://raw.githubusercontent.com/EC-Release/sdk/disty/scripts/libs/db.sh)
+source <(wget -q -O - https://raw.githubusercontent.com/EC-Release/sdk/disty/scripts/libs/db.sh)
 crdj=$(getCredJson "cred.json" "$EC_GITHUB_TOKEN")
 EC_CID=$(echo $crdj | jq -r ".svc1_1Test.devId")
 EC_CSC=$(echo $crdj | jq -r ".svc1_1Test.ownerHash")
