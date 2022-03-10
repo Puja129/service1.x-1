@@ -63,7 +63,7 @@ sleep 15
 
 curl "http://localhost:$PORT/v1.1/api/token/validate"
 
-docker logs svc --tail 500
+docker logs svc --tail 1000
 exit 0
 
 cat << EOF
