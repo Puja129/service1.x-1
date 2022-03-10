@@ -57,10 +57,12 @@ docker run --name=svc \
 -e PORT=$PORT \
 -v $(pwd)/svcs:/root/svcs \
 -p $PORT:$PORT \
-ghcr.io/ec-release/service:v1.1
-#-d \
-#ghcr.io/ec-release/service:v1.1 &> /dev/null
-exit 0
+-d \
+ghcr.io/ec-release/service:v1.1 &> /dev/null
+sleep 10
+
+curl "http://localhost:$PORT/v1.1
+
 cat << EOF
 
 
