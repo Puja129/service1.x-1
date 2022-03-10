@@ -39,7 +39,7 @@ cat << EOF
 -------------------------------------
 EOF
 
-PORT=7790
+PORT=:7990
 mkdir -p ./svcs
 #timeout -k 10 10 \
 docker run --name=svc \
