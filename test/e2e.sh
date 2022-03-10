@@ -57,10 +57,8 @@ docker run --name=svc \
 -e PORT=$PORT \
 -v $(pwd)/svcs:/root/svcs \
 -p $PORT:$PORT \
-ghcr.io/ec-release/service:v1.1
-#ghcr.io/ec-release/service:v1.1 &> /dev/null
-exit 0
-#-d \
+-d \
+ghcr.io/ec-release/service:v1.1 &> /dev/null
 
 cat << EOF
 
@@ -137,7 +135,8 @@ exit 0'
 x=1; y=0; count=50
 while [ $x -le $count ]
 do
-  ts=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total}" -o /dev/null "http://localhost:$PORT/v1.1/api/token/validate")
+  #ts=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total}" -o /dev/null "http://localhost:$PORT/v1.1/api/token/validate")
+  ts=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total}" "http://localhost:$PORT/v1.1/api/token/validate")
   printf "\n[%s] total time taken: %s sec.\n" "$x" "$ts"
   x=$(( $x + 1 ))
   y=$(awk "BEGIN{print $y+$ts}")
