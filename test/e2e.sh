@@ -62,6 +62,8 @@ ghcr.io/ec-release/service:v1.1 &> /dev/null
 sleep 10
 
 curl "http://localhost:$PORT/v1.1"
+
+docker logs svc --tail 500
 exit 0
 
 cat << EOF
