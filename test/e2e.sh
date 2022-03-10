@@ -59,7 +59,7 @@ docker run --name=svc \
 -p $PORT:$PORT \
 -d \
 ghcr.io/ec-release/service:v1.1 &> /dev/null
-sleep 10
+sleep 15
 
 curl "http://localhost:$PORT/v1.1/api/token/validate"
 
