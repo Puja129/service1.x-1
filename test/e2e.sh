@@ -142,7 +142,8 @@ x=1; y=0; count=50
 while [ $x -le $count ]
 do
   #ts=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total}" -o /dev/null "http://localhost:$PORT/v1.1/api/token/validate")
-  ts=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total}" "http://localhost:$PORT/v1.1/api/token/validate")
+  ts=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total}" -o ./tmp "http://localhost:$PORT/v1.1/api/token/validate")
+  cat ./tmp && rm ./tmp
   printf "\n[%s] total time taken: %s sec.\n" "$x" "$ts"
   x=$(( $x + 1 ))
   y=$(awk "BEGIN{print $y+$ts}")
