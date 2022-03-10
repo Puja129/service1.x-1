@@ -44,12 +44,10 @@ mkdir -p ./svcs
 #timeout -k 10 10 \
 docker run --name=svc \
 -e EC_SVC_ID=$EC_SVC_ID \
--e EC_SVC_URL_PUB=$EC_SVC_URL_PUB \
--e EC_SVC_URL_PVT=$EC_SVC_URL_PVT \
--e EC_SVC_URL_NAT=$EC_SVC_URL_NAT \
--e EC_ADM_TKN=$EC_ADM_TKN \
+-e EC_SVC_URL=$EC_SVC_URL \
 -e EC_SAC_URL=$EC_SAC_URL \
 -e EC_ATH_URL=$EC_ATH_URL \
+-e EC_ADM_TKN=$EC_ADM_TKN \
 -e EC_CID=$EC_CID \
 -e EC_CSC=$EC_CSC \
 -e EC_SETTING=$EC_SETTING \
