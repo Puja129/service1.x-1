@@ -8,7 +8,7 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     environment: dev
     env:
-      MY_REGISTRY_TAG: "ghcr.io/ec-release/service:v1.1"
+      MY_REGISTRY_TAG: "ghcr.io/ec-release/svc:v1.1"
       
     steps:
       - uses: actions/checkout@v2
