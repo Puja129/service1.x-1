@@ -18,15 +18,11 @@ WORKDIR /root
 
 COPY ./package.json ./
 
-RUN apk update && apk add wget curl git tree bash jq && \
+RUN apk update && apk add --no-cache wget curl git tree bash jq python2 && \
 npm install
 
-# deprecated cf support
-#RUN curl -L "https://packages.cloudfoundry.org/stable?release=linux64-binary&version=6.49.0&source=github-rel" | tar -zx && \
-#mv cf /usr/local/bin && \
-#cf --version
+RUN echo 'export PATH=$PATH:$HOME/.ec' >> /etc/profile && mkdir -p ~/.ec && echo '#!/bin/bash' >> ./.ec/~tmp && \
+echo 'source <(wget -q -O - https://raw.githubusercontent.com/EC-Release/sdk/disty/scripts/service1.x/service_v1.1.sh) "$@"' >> ./.ec/~tmp && \
+chmod +x ./.ec/~tmp
 
-RUN wget -q -O ./v1.1.linux64.sh https://raw.githubusercontent.com/EC-Release/sdk/disty/scripts/service1.x/v1.1.linux64.txt && \
-chmod +x ./v1.1.linux64.sh && ls -al ./v1.1.linux64.sh && pwd
-
-ENTRYPOINT ["./v1.1.linux64.sh"]
+ENTRYPOINT ["./.ec/~tmp"]
