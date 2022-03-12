@@ -147,9 +147,6 @@ do
   sleep 0.5
 done
 
-docker logs svc --tail 500
-exit 0
-
 cat << EOF
 
 
