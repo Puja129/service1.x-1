@@ -132,6 +132,7 @@ cat << EOF
  - admin call
  - Auth Basic
  - /v1/health/memory
+ - /v1.1/health/memory
  
 EOF
 
@@ -140,7 +141,8 @@ count=10
 x=1
 while [ $x -le "$count" ]
 do
-  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] total time taken: %{time_total}s\n" http://localhost:$PORT/v1.1/health/memory
+  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] time taken: %{time_total}s (v1)\n" http://localhost:$PORT/v1/health/memory
+  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] time taken: %{time_total}s (v1.1)\n" http://localhost:$PORT/v1.1/health/memory
   x=$(( $x + 1 ))
   sleep 1
 done
@@ -150,51 +152,40 @@ cat << EOF
 
  - cognito token validation (sac)
  - Auth Bearer
+ - /v1/api/token/validate
  - /v1.1/api/token/validate
  
 EOF
 
-x=1; y=0
+x=1; y1=0; y2=0
 while [ "$x" -le "$count" ]
 do
   #ts=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total}" -o /dev/null "http://localhost:$PORT/v1.1/api/token/validate")
-  ts=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total}" -o ./tmp "http://localhost:$PORT/v1.1/api/token/validate")
+  ts1=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total} (v1)" -o ./tmp "http://localhost:$PORT/v1/api/token/validate")
+  ts2=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total} (v1.1)" -o ./tmp "http://localhost:$PORT/v1.1/api/token/validate")
   cat ./tmp && rm ./tmp
-  printf "\n[%s] total time taken: %s sec.\n" "$x" "$ts"
+  printf "\n[%s] total time taken: %s sec.\n" "$x" "$ts1"
+  printf "\n[%s] total time taken: %s sec.\n" "$x" "$ts2"
   x=$(( $x + 1 ))
-  y=$(awk "BEGIN{print $y+$ts}")
+  y1=$(awk "BEGIN{print $y1+$ts1}")
+  y2=$(awk "BEGIN{print $y2+$ts2}")
   sleep 0.5
 done
 
-y=$(awk "BEGIN{print $y/$count}")
+y1=$(awk "BEGIN{print $y1/$count}")
+y2=$(awk "BEGIN{print $y2/$count}")
 
 btkn=$(getSdcTkn "$EC_CID" "$EC_CSC" "$EC_ATH_URL")
-tdat=$(printf '{"parent":"%s","averagedTime":"%s","numOfRuns":"%s","objective":"integration service endpoints","path":"/v1.1/api/token/validate","logs":"https://github.com/ayasuda-ge/service1.x/actions/runs/%s"}' "06ba9042-3b53-4b77-b71d-cd6f6417a4b2" "$y" "$count" "$GITHUB_RUN_ID")
+tdat=$(printf '{"parent":"%s","averagedTimeV1":"%s","averagedTimeV2":"%s","numOfRuns":"%s","objective":"integration service endpoints","pathV1":"/v1/api/token/validate","pathV2":"/v1.1/api/token/validate","logs":"https://github.com/ayasuda-ge/service1.x/actions/runs/%s"}' "06ba9042-3b53-4b77-b71d-cd6f6417a4b2" "$y1" "$y2" "$count" "$GITHUB_RUN_ID")
 echo $tdat
 insertData "$EC_SAC_URL" "service e2e build [$EC_BUILD_ID]" "$btkn" "$tdat"
 
 cat << EOF
 
 
- - admin call
- - Auth Basic
- - /v1.1/health/memory
- 
-EOF
-
-x=1
-while [ $x -le "$count" ]
-do
-  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] total time taken: %{time_total}s\n" http://localhost:$PORT/v1.1/health/memory
-  x=$(( $x + 1 ))
-  sleep 1
-done
-
-cat << EOF
-
-
  - cert retrieval call
  - Auth Basic
+ - /v1/api/pubkey
  - /v1.1/api/pubkey
  
 EOF
@@ -202,7 +193,8 @@ EOF
 x=1
 while [ $x -le "$count" ]
 do
-  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] total time taken: %{time_total}s (test content discarded)\n" --output /dev/null http://localhost:$PORT/v1.1/api/pubkey
+  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] total time taken: %{time_total}s (v1)\n" --output /dev/null http://localhost:$PORT/v1/api/pubkey
+  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] total time taken: %{time_total}s (v1.1)\n" --output /dev/null http://localhost:$PORT/v1.1/api/pubkey
   x=$(( $x + 1 ))
   sleep 1
 done
