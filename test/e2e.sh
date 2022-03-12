@@ -142,6 +142,7 @@ x=1
 while [ $x -le "$count" ]
 do
   curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] time taken: %{time_total}s (v1)\n" http://localhost:$PORT/v1/health/memory
+  sleep 1
   curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] time taken: %{time_total}s (v1.1)\n" http://localhost:$PORT/v1.1/health/memory
   x=$(( $x + 1 ))
   sleep 1
@@ -195,6 +196,7 @@ x=1
 while [ $x -le "$count" ]
 do
   curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] total time taken: %{time_total}s (v1)\n" --output /dev/null http://localhost:$PORT/v1/api/pubkey
+  sleep 1
   curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] total time taken: %{time_total}s (v1.1)\n" --output /dev/null http://localhost:$PORT/v1.1/api/pubkey
   x=$(( $x + 1 ))
   sleep 1
