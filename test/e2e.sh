@@ -123,6 +123,30 @@ cat << EOF
 
 [vii] endpoints checking
 -------------------------------------
+EOF
+
+
+cat << EOF
+
+
+ - admin call
+ - Auth Basic
+ - /v1/health/memory
+ 
+EOF
+
+count=10
+
+x=1
+while [ $x -le "$count" ]
+do
+  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] total time taken: %{time_total}s\n" http://localhost:$PORT/v1.1/health/memory
+  x=$(( $x + 1 ))
+  sleep 1
+done
+
+cat << EOF
+
 
  - cognito token validation (sac)
  - Auth Bearer
@@ -130,15 +154,8 @@ cat << EOF
  
 EOF
 
-# beging proxy test
-: 'curl http://localhost:$PORT/v1.2beta > .tmp
-cat .tmp
-docker logs svc --tail 500
-exit 0'
-# end proxy test
-
-x=1; y=0; count=50
-while [ $x -le $count ]
+x=1; y=0
+while [ "$x" -le "$count" ]
 do
   #ts=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total}" -o /dev/null "http://localhost:$PORT/v1.1/api/token/validate")
   ts=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total}" -o ./tmp "http://localhost:$PORT/v1.1/api/token/validate")
@@ -166,7 +183,7 @@ cat << EOF
 EOF
 
 x=1
-while [ $x -le 50 ]
+while [ $x -le "$count" ]
 do
   curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] total time taken: %{time_total}s\n" http://localhost:$PORT/v1.1/health/memory
   x=$(( $x + 1 ))
@@ -183,7 +200,7 @@ cat << EOF
 EOF
 
 x=1
-while [ $x -le 50 ]
+while [ $x -le "$count" ]
 do
   curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] total time taken: %{time_total}s (test content discarded)\n" --output /dev/null http://localhost:$PORT/v1.1/api/pubkey
   x=$(( $x + 1 ))
