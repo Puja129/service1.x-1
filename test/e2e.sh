@@ -131,7 +131,7 @@ cat << EOF
  - admin call
  - Auth Basic
  - /v1/index/
- - /v1.1/index/
+ - /v1.1/index/swagger.json
  
 EOF
 
@@ -140,9 +140,9 @@ count=5
 x=1
 while [ $x -le "$count" ]
 do
-  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] time taken: %{time_total}s (v1)\n" http://localhost:$PORT/v1/index/
+  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] time taken: %{time_total}s (v1)\n" -o /dev/null http://localhost:$PORT/v1/index/
   sleep 0.5
-  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] time taken: %{time_total}s (v1.1)\n" http://localhost:$PORT/v1.1/index/
+  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] time taken: %{time_total}s (v1.1)\n" -o /dev/null http://localhost:$PORT/v1.1/index/swagger.json
   x=$(( $x + 1 ))
   sleep 0.5
 done
