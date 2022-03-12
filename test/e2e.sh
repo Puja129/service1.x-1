@@ -125,6 +125,27 @@ cat << EOF
 -------------------------------------
 EOF
 
+cat << EOF
+
+
+ - admin call
+ - Auth Basic
+ - /v1/index/
+ - /v1.1/index/
+ 
+EOF
+
+count=5
+
+x=1
+while [ $x -le "$count" ]
+do
+  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] time taken: %{time_total}s (v1)\n" http://localhost:$PORT/v1/index/
+  sleep 0.5
+  curl -u "admin:$EC_ADM_TKN" -sS -w "\n[$x] time taken: %{time_total}s (v1.1)\n" http://localhost:$PORT/v1.1/index/
+  x=$(( $x + 1 ))
+  sleep 0.5
+done
 
 cat << EOF
 
@@ -136,7 +157,7 @@ cat << EOF
  
 EOF
 
-count=10
+count=5
 
 x=1
 while [ $x -le "$count" ]
