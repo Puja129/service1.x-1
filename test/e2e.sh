@@ -57,14 +57,13 @@ docker run --name=svc \
 -e PORT=$PORT \
 -v $(pwd)/svcs:/root/svcs \
 -p $PORT:$PORT \
-ghcr.io/ec-release/svc:v1.1
-#-d \
-#ghcr.io/ec-release/svc:v1.1 &> /dev/null
+-d \
+ghcr.io/ec-release/svc:v1.1 &> /dev/null
 
 #curl "http://localhost:$PORT/v1.1/info/"
 
 #docker logs svc --tail 1000
-exit 0
+#exit 0
 
 cat << EOF
 
