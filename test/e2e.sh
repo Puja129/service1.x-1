@@ -162,6 +162,7 @@ while [ "$x" -le "$count" ]
 do
   #ts=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total}" -o /dev/null "http://localhost:$PORT/v1.1/api/token/validate")
   ts1=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total} (v1)" -o ./tmp "http://localhost:$PORT/v1/api/token/validate")
+  sleep 1
   ts2=$(curl -X POST -sS -H 'Authorization: Bearer my-bearer-token' -w "%{time_total} (v1.1)" -o ./tmp "http://localhost:$PORT/v1.1/api/token/validate")
   cat ./tmp && rm ./tmp
   printf "\n[%s] total time taken: %s sec.\n" "$x" "$ts1"
@@ -169,7 +170,7 @@ do
   x=$(( $x + 1 ))
   y1=$(awk "BEGIN{print $y1+$ts1}")
   y2=$(awk "BEGIN{print $y2+$ts2}")
-  sleep 0.5
+  sleep 1
 done
 
 y1=$(awk "BEGIN{print $y1/$count}")
