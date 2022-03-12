@@ -174,7 +174,7 @@ class ECService extends RSSession {
 
 		}
 	    }).catch((err)=>{
-		_this._debug(`${new Date()} EC: ${process.env.ZONE} call failed to pickup the call. err: ${JSON.stringify(err)} req.url: ${req.url} req.method: ${req.method} BASE: ${process.env.BASE}`);
+		_this._debug(`${new Date()} EC: ${process.env.ZONE} call failed to pickup the call. req.url: ${req.url} req.method: ${req.method} BASE: ${process.env.BASE}`);
 		res.writeHead(501);
 		return res.end(JSON.stringify(err));
 	    });
