@@ -51,9 +51,6 @@ docker run --name=svc \
 -e EC_CID=$EC_CID \
 -e EC_CSC=$EC_CSC \
 -e EC_SETTING=$EC_SETTING \
--e EC_SCRIPT_1=$EC_SCRIPT_1 \
--e EC_SCRIPT_2=$EC_SCRIPT_2 \
--e EC_SCRIPT_3=$EC_SCRIPT_3 \
 -e PORT=$PORT \
 -v $(pwd)/svcs:/root/svcs \
 -p $PORT:$PORT \
@@ -104,6 +101,7 @@ cat << EOF
 
 [v] initialising test
 -------------------------------------
+
 EOF
 
 sleep 10
@@ -113,6 +111,7 @@ cat << EOF
 
 [vi] verify serialised service setting 
 -------------------------------------
+
 EOF
 
 tree ./svcs
@@ -123,6 +122,7 @@ cat << EOF
 
 [vii] endpoints checking
 -------------------------------------
+
 EOF
 
 cat << EOF
