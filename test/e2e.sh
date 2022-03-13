@@ -55,7 +55,7 @@ docker run --name=svc \
 -v $(pwd)/svcs:/root/svcs \
 -p $PORT:$PORT \
 -d \
-ghcr.io/ec-release/svc:v1.1 &> /dev/null
+ghcr.io/ec-release/svc:1.1 &> /dev/null
 
 #curl "http://localhost:$PORT/v1.1/info/"
 
