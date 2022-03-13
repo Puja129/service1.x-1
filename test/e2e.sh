@@ -72,7 +72,7 @@ EOF
 CA_PPS=$(echo $crdj | jq -r ".agt4Svc1_1Test.ownerHash")
 docker run \
 -e AGENT_REV=v1.hokkaido.213 \
--e EC_PPS=$CA_PPS ghcr.io/ec-release/agt:v1 -ver
+-e EC_PPS=$CA_PPS ghcr.io/ec-release/agt:1 -ver
 
 : 'GTW_TKN=$(printf "admin:%s" "$SvcTkn" | base64 -w0)
 GTW_PRT="7991"
