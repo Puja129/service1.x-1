@@ -20,9 +20,6 @@ jobs:
       EC_ADM_TKN: my-legacy-cf-admin-token
       EC_SAC_MSTR_URL: ${{secrets.EC_SAC_MSTR_URL}}
       EC_SAC_SLAV_URL: ${{secrets.EC_SAC_SLAV_URL}}
-      EC_SCRIPT_1: ${{secrets.EC_SCRIPT_1}}
-      EC_SCRIPT_2: ${{secrets.EC_SCRIPT_2}}
-      EC_SCRIPT_3: ${{secrets.EC_SCRIPT_3}}
       EC_GITHUB_TOKEN: ${{secrets.MY_GITHUB_TKN}}
       
       #for build only
