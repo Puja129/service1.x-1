@@ -177,6 +177,10 @@ cat << EOF
  - <sac-master>/**/**/user/<id>
  - <sac-slave>/**/**/proc/<id>
  
+ echo TOKEN: $(getSdcTkn $EC_CID $EC_CSC $SAC_URL_MST)
+ 
+ exit 0
+ 
 EOF
 
 #my_token=$(fetchCognitoTkn <$cgnto-url> <$cgnto-cid> <$cgnto-csc>)
