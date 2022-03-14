@@ -13,7 +13,7 @@
 
 cat << EOF
 
-
+-------------------------------------
 [i] environment setting
 -------------------------------------
 EOF
@@ -36,7 +36,7 @@ SAC_URL_SLV="http://localhost:${SAC_SLV_PORT}"
 
 cat << EOF
 
-
+-------------------------------------
 [ii] mockup legacy setting
 -------------------------------------
 EOF
@@ -46,7 +46,7 @@ EC_SETTING=$(printf '{"%s":{"ids":["my-aid-1","my-aid-2"],"trustedIssuerIds":["l
 
 cat << EOF
 
-
+-------------------------------------
 [iv] launch sac master
 -------------------------------------
 EOF
@@ -63,7 +63,7 @@ ghcr.io/ec-release/sac:master
 
 cat << EOF
 
-
+-------------------------------------
 [iv] launch sac slave
 -------------------------------------
 EOF
@@ -81,7 +81,7 @@ ghcr.io/ec-release/sac:slave
 
 cat << EOF
 
-
+-------------------------------------
 [iii] launch service instance
 -------------------------------------
 EOF
@@ -109,7 +109,7 @@ ghcr.io/ec-release/svc:1.1 &> /dev/null
 
 cat << EOF
 
-
+-------------------------------------
 [iv] launch agent instance
 -------------------------------------
 EOF
@@ -143,7 +143,7 @@ agent \
 
 cat << EOF
 
-
+-------------------------------------
 [v] initialising test
 -------------------------------------
 
@@ -153,7 +153,7 @@ sleep 15
 
 cat << EOF
 
-
+-------------------------------------
 [vi] verify serialised service setting 
 -------------------------------------
 
@@ -164,7 +164,7 @@ cat ./svcs/$EC_SVC_ID.json
 
 cat << EOF
 
-
+-------------------------------------
 [vii] endpoints checking
 -------------------------------------
 
@@ -179,7 +179,7 @@ cat << EOF
  
 EOF
 
- echo TOKEN: $(getSdcTkn $EC_CID $EC_CSC $SAC_URL_MST)
+ echo TOKEN: $(getSdcTkn "$EC_CID" "$EC_CSC" "$SAC_URL_MST")
  
  exit 0
  
@@ -288,7 +288,7 @@ done
 
 cat << EOF
 
-
+-------------------------------------
 [vii] logs dump
 -------------------------------------
 EOF
