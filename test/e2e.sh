@@ -18,6 +18,10 @@ cat << EOF
 -------------------------------------
 EOF
 source <(wget -q -O - https://raw.githubusercontent.com/EC-Release/sdk/disty/scripts/libs/db.sh)
+
+#get helps!
+source <(wget -q -O - https://raw.githubusercontent.com/ayasuda-ge/service1.x/1.1/test/e2e-helper.sh)
+
 crdj=$(getCredJson "cred.json" "$EC_GITHUB_TOKEN")
 EC_CID=$(echo $crdj | jq -r ".svc1_1Test.devId")
 EC_CSC=$(echo $crdj | jq -r ".svc1_1Test.ownerHash")
@@ -168,13 +172,17 @@ EOF
 
 cat << EOF
 
+
  - sac token validation
  - <sac-master>/**/**/user/<id>
  - <sac-slave>/**/**/proc/<id>
  
 EOF
 
-#curl sac getting response
+#my_token=$(fetchCognitoTkn <$cgnto-url> <$cgnto-cid> <$cgnto-csc>)
+#format of the req body
+#req_body=$(printf '{"hello":"world","token":"%s"}' "$my_token" | jq -aRs . )
+#curl <sac> -h <some-header> -d "$req_body"
 
 cat << EOF
 
