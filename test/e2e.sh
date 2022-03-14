@@ -61,6 +61,8 @@ docker run --name="$SAC_TYPE_MST" \
 -d \
 ghcr.io/ec-release/sac:"$SAC_TYPE_MST"
  
+sleep 10
+ 
 cat << EOF
 
 -------------------------------------
@@ -78,6 +80,7 @@ docker run --name="$SAC_TYPE_SLV" \
 -p "$SAC_SLV_PORT:$SAC_SLV_PORT" \
 ghcr.io/ec-release/sac:"$SAC_TYPE_SLV"
 
+sleep 10
 
 cat << EOF
 
@@ -149,7 +152,7 @@ cat << EOF
 
 EOF
 
-sleep 15
+sleep 10
 
 cat << EOF
 
