@@ -51,6 +51,7 @@ docker run --name="$SAC_TYPE_MST" \
 -e SAC_TYPE="$SAC_TYPE_MST" \
 -e SAC_URL="$SAC_URL_MST" \
 -e EC_CID="$EC_CID" \
+-e EC_CSC="$EC_CSC" \
 -e PORT="$PORT" \
 -p "$SAC_MST_PORT:$SAC_MST_PORT" \
 -d \
@@ -67,6 +68,7 @@ docker run --name="$SAC_TYPE_SLV" \
 -e SAC_TYPE="$SAC_TYPE_SLV" \
 -e SAC_URL="$SAC_URL_SLV" \
 -e EC_CID="$EC_CID" \
+-e EC_CSC="$EC_CSC" \
 -e PORT="$PORT" \
 -p "$SAC_SLV_PORT:$SAC_SLV_PORT" \
 -d \
@@ -144,7 +146,7 @@ cat << EOF
 
 EOF
 
-sleep 10
+sleep 15
 
 cat << EOF
 
@@ -164,6 +166,16 @@ cat << EOF
 -------------------------------------
 
 EOF
+
+cat << EOF
+
+ - sac token validation
+ - <sac-master>/**/**/user/<id>
+ - <sac-slave>/**/**/proc/<id>
+ 
+EOF
+
+#curl sac getting response
 
 cat << EOF
 
