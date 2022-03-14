@@ -35,6 +35,25 @@ EC_SETTING=$(printf '{"%s":{"ids":["my-aid-1","my-aid-2"],"trustedIssuerIds":["l
 cat << EOF
 
 
+[iv] launch sac master
+-------------------------------------
+EOF
+
+docker run ghcr.io/ec-release/sac:master
+
+cat << EOF
+
+
+[iv] launch sac slave
+-------------------------------------
+EOF
+
+docker run ghcr.io/ec-release/sac:slave
+
+
+cat << EOF
+
+
 [iii] launch service instance
 -------------------------------------
 EOF
