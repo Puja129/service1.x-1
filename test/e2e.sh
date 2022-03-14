@@ -22,6 +22,14 @@ crdj=$(getCredJson "cred.json" "$EC_GITHUB_TOKEN")
 EC_CID=$(echo $crdj | jq -r ".svc1_1Test.devId")
 EC_CSC=$(echo $crdj | jq -r ".svc1_1Test.ownerHash")
 
+PORT=7990
+SAC_MST_PORT=7991
+SAC_SLV_PORT=7992
+SAC_TYPE_MST="sac-master"
+SAC_TYPE_SLV="sac-slave"
+SAC_URL_MST="http://localhost:${SAC_MST_PORT}"
+SAC_URL_SLV="http://localhost:${SAC_SLV_PORT}"
+
 cat << EOF
 
 
@@ -39,7 +47,14 @@ cat << EOF
 -------------------------------------
 EOF
 
-docker run ghcr.io/ec-release/sac:master
+docker run --name="$SAC_TYPE_MST" \
+-e SAC_TYPE="$SAC_TYPE_MST" \
+-e SAC_URL="$SAC_URL_MST" \
+-e EC_CID="$EC_CID" \
+-e PORT="$PORT" \
+-p "$SAC_MST_PORT:$SAC_MST_PORT" \
+-d \
+ghcr.io/ec-release/sac:master
 
 cat << EOF
 
@@ -48,7 +63,14 @@ cat << EOF
 -------------------------------------
 EOF
 
-docker run ghcr.io/ec-release/sac:slave
+docker run --name="$SAC_TYPE_SLV" \
+-e SAC_TYPE="$SAC_TYPE_SLV" \
+-e SAC_URL="$SAC_URL_SLV" \
+-e EC_CID="$EC_CID" \
+-e PORT="$PORT" \
+-p "$SAC_SLV_PORT:$SAC_SLV_PORT" \
+-d \
+ghcr.io/ec-release/sac:slave
 
 
 cat << EOF
@@ -58,21 +80,23 @@ cat << EOF
 -------------------------------------
 EOF
 
-PORT=7990
 mkdir -p ./svcs
+#revisit
+#-e EC_SAC_MSTR_URL="$SAC_URL_MST" \
+#-e EC_SAC_SLAV_URL="$SAC_URL_SLV" \
 #timeout -k 10 10 \
 docker run --name=svc \
--e EC_SVC_ID=$EC_SVC_ID \
--e EC_SVC_URL=$EC_SVC_URL \
--e EC_SAC_MSTR_URL=$EC_SAC_MSTR_URL \
--e EC_SAC_SLAV_URL=$EC_SAC_SLAV_URL \
--e EC_ADM_TKN=$EC_ADM_TKN \
--e EC_CID=$EC_CID \
--e EC_CSC=$EC_CSC \
--e EC_SETTING=$EC_SETTING \
--e PORT=$PORT \
--v $(pwd)/svcs:/root/svcs \
--p $PORT:$PORT \
+-e EC_SVC_ID="$EC_SVC_ID" \
+-e EC_SVC_URL="$EC_SVC_URL" \
+-e EC_SAC_MSTR_URL="$EC_SAC_MSTR_URL" \
+-e EC_SAC_SLAV_URL="$EC_SAC_SLAV_URL" \
+-e EC_ADM_TKN="$EC_ADM_TKN" \
+-e EC_CID="$EC_CID" \
+-e EC_CSC="$EC_CSC" \
+-e EC_SETTING="$EC_SETTING" \
+-e PORT="$PORT" \
+-v "$(pwd)/svcs:/root/svcs" \
+-p "$PORT:$PORT" \
 -d \
 ghcr.io/ec-release/svc:1.1 &> /dev/null
 
