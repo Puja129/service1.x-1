@@ -83,15 +83,12 @@ cat << EOF
 EOF
 
 mkdir -p ./svcs
-#revisit
-#-e EC_SAC_MSTR_URL="$SAC_URL_MST" \
-#-e EC_SAC_SLAV_URL="$SAC_URL_SLV" \
 #timeout -k 10 10 \
 docker run --name=svc \
 -e EC_SVC_ID="$EC_SVC_ID" \
 -e EC_SVC_URL="$EC_SVC_URL" \
--e EC_SAC_MSTR_URL="$EC_SAC_MSTR_URL" \
--e EC_SAC_SLAV_URL="$EC_SAC_SLAV_URL" \
+-e EC_SAC_MSTR_URL="$SAC_URL_MST" \
+-e EC_SAC_SLAV_URL="$SAC_URL_SLV" \
 -e EC_ADM_TKN="$EC_ADM_TKN" \
 -e EC_CID="$EC_CID" \
 -e EC_CSC="$EC_CSC" \
