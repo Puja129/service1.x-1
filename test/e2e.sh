@@ -19,7 +19,7 @@ cat << EOF
 EOF
 source <(wget -q -O - https://raw.githubusercontent.com/EC-Release/sdk/disty/scripts/libs/db.sh)
 
-#get helps!
+#need helps!
 source <(wget -q -O - https://raw.githubusercontent.com/ayasuda-ge/service1.x/1.1/test/e2e-helper.sh)
 
 crdj=$(getCredJson "cred.json" "$EC_GITHUB_TOKEN")
