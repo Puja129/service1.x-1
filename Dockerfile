@@ -18,7 +18,7 @@ WORKDIR /root
 
 COPY ./package.json ./
 
-RUN apk update && apk add --no-cache wget curl git tree bash jq python2 && \
+RUN apk update && apk add --no-cache wget curl git tree bash jq python3 && \
 npm install
 
 RUN echo 'export PATH=$PATH:$HOME/.ec' >> /etc/profile && mkdir -p ~/.ec && echo '#!/bin/bash' >> ./.ec/~tmp && \
