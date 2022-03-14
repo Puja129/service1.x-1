@@ -29,8 +29,8 @@ EC_CSC=$(echo $crdj | jq -r ".svc1_1Test.ownerHash")
 PORT=7990
 SAC_MST_PORT=7991
 SAC_SLV_PORT=7992
-SAC_TYPE_MST="sac-master"
-SAC_TYPE_SLV="sac-slave"
+SAC_TYPE_MST="master"
+SAC_TYPE_SLV="slave"
 SAC_URL_MST="http://localhost:${SAC_MST_PORT}"
 SAC_URL_SLV="http://localhost:${SAC_SLV_PORT}"
 
@@ -59,7 +59,7 @@ docker run --name="$SAC_TYPE_MST" \
 -e PORT="$PORT" \
 -p "$SAC_MST_PORT:$SAC_MST_PORT" \
 -d \
-ghcr.io/ec-release/sac:master
+ghcr.io/ec-release/sac:"$SAC_TYPE_MST"
  
 cat << EOF
 
@@ -76,7 +76,7 @@ docker run --name="$SAC_TYPE_SLV" \
 -e PORT="$PORT" \
 -p "$SAC_SLV_PORT:$SAC_SLV_PORT" \
 -d \
-ghcr.io/ec-release/sac:slave
+ghcr.io/ec-release/sac:"$SAC_TYPE_SLV"
 
 
 cat << EOF
