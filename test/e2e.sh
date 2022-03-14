@@ -58,7 +58,7 @@ docker run --name="$SAC_TYPE_MST" \
 -e EC_CSC="$EC_CSC" \
 -e PORT="$PORT" \
 -p "$SAC_MST_PORT:$SAC_MST_PORT" \
--d
+-d \
 ghcr.io/ec-release/sac:master
  
 cat << EOF
