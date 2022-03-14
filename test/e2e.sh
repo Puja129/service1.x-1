@@ -70,6 +70,7 @@ EOF
 
 docker run --name="$SAC_TYPE_SLV" \
 -e SAC_TYPE="$SAC_TYPE_SLV" \
+-e SAC_URL_MST="$SAC_URL_MST"
 -e SAC_URL="$SAC_URL_SLV" \
 -e EC_CID="$EC_CID" \
 -e EC_CSC="$EC_CSC" \
