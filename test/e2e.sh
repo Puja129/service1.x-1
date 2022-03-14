@@ -75,9 +75,9 @@ docker run --name="$SAC_TYPE_SLV" \
 -e EC_CSC="$EC_CSC" \
 -e EC_PORT="$SAC_SLV_PORT" \
 -p "$SAC_SLV_PORT:$SAC_SLV_PORT" \
--d \
 ghcr.io/ec-release/sac:"$SAC_TYPE_SLV"
 
+exit 0
 
 cat << EOF
 
