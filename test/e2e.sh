@@ -56,7 +56,7 @@ docker run --name="$SAC_TYPE_MST" \
 -e SAC_URL="$SAC_URL_MST" \
 -e EC_CID="$EC_CID" \
 -e EC_CSC="$EC_CSC" \
--e PORT="$PORT" \
+-e EC_PORT="$SAC_MST_PORT" \
 -p "$SAC_MST_PORT:$SAC_MST_PORT" \
 -d \
 ghcr.io/ec-release/sac:"$SAC_TYPE_MST"
@@ -73,7 +73,7 @@ docker run --name="$SAC_TYPE_SLV" \
 -e SAC_URL="$SAC_URL_SLV" \
 -e EC_CID="$EC_CID" \
 -e EC_CSC="$EC_CSC" \
--e PORT="$PORT" \
+-e EC_PORT="$SAC_SLV_PORT" \
 -p "$SAC_SLV_PORT:$SAC_SLV_PORT" \
 -d \
 ghcr.io/ec-release/sac:"$SAC_TYPE_SLV"
