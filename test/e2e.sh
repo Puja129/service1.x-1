@@ -238,10 +238,10 @@ done
 y1=$(awk "BEGIN{print $y1/$count}")
 y2=$(awk "BEGIN{print $y2/$count}")
 
-btkn=$(getSdcTkn "$EC_CID" "$EC_CSC" "$EC_ATH_URL")
+btkn=$(getSdcTkn "$EC_CID" "$EC_CSC" "$EC_SAC_MSTR_URL")
 tdat=$(printf '{"parent":"%s","averagedTimeV1":"%s","averagedTimeV2":"%s","numOfRuns":"%s","objective":"integration service endpoints","pathV1":"/v1/api/token/validate","pathV2":"/v1.1/api/token/validate","logs":"https://github.com/ayasuda-ge/service1.x/actions/runs/%s"}' "06ba9042-3b53-4b77-b71d-cd6f6417a4b2" "$y1" "$y2" "$count" "$GITHUB_RUN_ID")
 echo $tdat
-insertData "$EC_SAC_URL" "service e2e build [$EC_BUILD_ID]" "$btkn" "$tdat"
+insertData "$EC_SAC_SLAV_URL" "service e2e build [$EC_BUILD_ID]" "$btkn" "$tdat"
 
 cat << EOF
 
