@@ -22,8 +22,8 @@ jobs:
       
       #for build only
       EC_BUILD_ID: ${{ github.run_number }}
-      EC_SAC_MSTR_URL: ${{secrets.EC_SAC_MSTR_URL}}
-      EC_SAC_SLAV_URL: ${{secrets.EC_SAC_SLAV_URL}}
+      SAC_MSTR_URL_TEST_ONLY: ${{secrets.EC_SAC_MSTR_URL}}
+      SAC_SLAV_URL_TEST_ONLY: ${{secrets.EC_SAC_SLAV_URL}}
       
     steps:
       - uses: actions/checkout@v2
