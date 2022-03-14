@@ -58,9 +58,8 @@ docker run --name="$SAC_TYPE_MST" \
 -e EC_CSC="$EC_CSC" \
 -e PORT="$PORT" \
 -p "$SAC_MST_PORT:$SAC_MST_PORT" \
+-d
 ghcr.io/ec-release/sac:master
-
-exit 0
  
 cat << EOF
 
@@ -182,6 +181,7 @@ EOF
 
  echo TOKEN: $(getSdcTkn "$EC_CID" "$EC_CSC" "$SAC_URL_MST")
  
+ exit 0
 #my_token=$(fetchCognitoTkn <$cgnto-url> <$cgnto-cid> <$cgnto-csc>)
 #format of the req body
 #req_body=$(printf '{"hello":"world","token":"%s"}' "$my_token" | jq -aRs . )
