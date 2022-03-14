@@ -177,12 +177,12 @@ cat << EOF
  - <sac-master>/**/**/user/<id>
  - <sac-slave>/**/**/proc/<id>
  
+EOF
+
  echo TOKEN: $(getSdcTkn $EC_CID $EC_CSC $SAC_URL_MST)
  
  exit 0
  
-EOF
-
 #my_token=$(fetchCognitoTkn <$cgnto-url> <$cgnto-cid> <$cgnto-csc>)
 #format of the req body
 #req_body=$(printf '{"hello":"world","token":"%s"}' "$my_token" | jq -aRs . )
