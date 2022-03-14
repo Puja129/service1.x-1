@@ -7,16 +7,11 @@ function fetchCognitoTkn() {
   #do somthing
 }
 
-cat << EOF
-
-
-
+: '
 [*] test fetchCognitoTkn
 -------------------------------------
 
 my_token=$(fetchCognitoTkn <$cgnto-url> <$cgnto-cid> <$cgnto-csc>)
 
 echo my_token: $my_token
-
-
-EOF
+'
