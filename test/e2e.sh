@@ -26,9 +26,9 @@ crdj=$(getCredJson "cred.json" "$EC_GITHUB_TOKEN")
 EC_CID=$(echo $crdj | jq -r ".svc1_1Test.devId")
 EC_CSC=$(echo $crdj | jq -r ".svc1_1Test.ownerHash")
 
-SVC_PORT=":7990"
-SAC_MST_PORT=":7991"
-SAC_SLV_PORT=":7992"
+SVC_PORT=7990
+SAC_MST_PORT=7991
+SAC_SLV_PORT=7992
 SAC_TYPE_MST="master"
 SAC_TYPE_SLV="slave"
 SAC_URL_MST="http://localhost${SAC_MST_PORT}"
@@ -99,9 +99,9 @@ docker run --name=svc \
 -e EC_CID="$EC_CID" \
 -e EC_CSC="$EC_CSC" \
 -e EC_SETTING="$EC_SETTING" \
--e EC_PORT="$SVC_PORT" \
+-e EC_PORT=":$SVC_PORT" \
 -v "$(pwd)/svcs:/root/svcs" \
--p "$PORT:$PORT" \
+-p "$SVC_PORT:$SVC_PORT" \
 -d \
 ghcr.io/ec-release/svc:1.1 &> /dev/null
 
