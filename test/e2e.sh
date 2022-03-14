@@ -84,6 +84,8 @@ EOF
 
 mkdir -p ./svcs
 #timeout -k 10 10 \
+#-e EC_SAC_MSTR_URL="$EC_SAC_MSTR_URL" \
+#-e EC_SAC_SLAV_URL="$EC_SAC_SLAV_URL" \
 docker run --name=svc \
 -e EC_SVC_ID="$EC_SVC_ID" \
 -e EC_SVC_URL="$EC_SVC_URL" \
