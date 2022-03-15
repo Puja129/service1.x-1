@@ -12,7 +12,7 @@ jobs:
     #environment: dev
     env:
       #for build only
-      EC_GITHUB_TOKEN: ${{secrets.MY_GITHUB_TKN}}      
+      #EC_GITHUB_TOKEN: ${{secrets.MY_GITHUB_TKN}}      
       EC_BUILD_ID: ${{ github.run_number }}
       EC_COGNITO_CID: ${{secrets.COGNITO_CID}}
       EC_COGNITO_CSC: ${{secrets.COGNITO_CSC}}
