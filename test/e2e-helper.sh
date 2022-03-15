@@ -3,8 +3,6 @@
 # $1: cognito tkn endpoint. $2: cognito clientid. $3: cognito client secrt
 # output: the token
 function fetchCognitoTkn() {
-  echo $(echo "$1" | base64)
-  return
   auth=$(echo -n "$2:$3" | base64)
   resp=$(curl -s -X POST "$1" \
   -H 'Content-Type: application/x-www-form-urlencoded' \
@@ -15,8 +13,7 @@ function fetchCognitoTkn() {
   echo "$resp" | jq -r '.access_token'
   #printf '%s' "$my_token"
 }
-fetchCognitoTkn "$EC_COGNITO_URL"
-exit 0
+
 my_token=$(fetchCognitoTkn "$EC_COGNITO_URL" "$EC_COGNITO_CID" "$EC_COGNITO_CSC")
 #echo cognito_url: "$COGNITO_URL"
 #jwtdec=$(echo "$my_token" | jq -R 'split(".") | .[0] | @base64d | fromjson')
