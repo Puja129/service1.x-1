@@ -203,7 +203,7 @@ cat << EOF
  
 EOF
 
-count=5
+count=20
 
 x=1
 while [ $x -le "$count" ]
@@ -224,8 +224,6 @@ cat << EOF
  - /v1.1/health/memory
  
 EOF
-
-count=5
 
 x=1
 while [ $x -le "$count" ]
