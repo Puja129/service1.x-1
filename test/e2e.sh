@@ -51,7 +51,9 @@ cat << EOF
 -------------------------------------
 EOF
 
-docker run --name="$SAC_TYPE_MST" \
+docker run \
+--network=host \
+--name="$SAC_TYPE_MST" \
 -e SAC_TYPE="$SAC_TYPE_MST" \
 -e SAC_URL="$SAC_URL_MST" \
 -e EC_CID="$EC_CID" \
@@ -70,7 +72,9 @@ cat << EOF
 -------------------------------------
 EOF
 
-docker run --name="$SAC_TYPE_SLV" \
+docker run \
+--network=host \
+--name="$SAC_TYPE_SLV" \
 -e SAC_TYPE="$SAC_TYPE_SLV" \
 -e SAC_URL_MST="$SAC_URL_MST" \
 -e SAC_URL="$SAC_URL_SLV" \
@@ -93,7 +97,9 @@ mkdir -p ./svcs
 #timeout -k 10 10 \
 #-e EC_SAC_MSTR_URL="$SAC_MSTR_URL_TEST_ONLY" \
 #-e EC_SAC_SLAV_URL="$SAC_SLAV_URL_TEST_ONLY" \
-docker run --name=svc \
+docker run \
+--network=host \
+--name=svc \
 -e EC_SVC_ID="$EC_SVC_ID" \
 -e EC_SVC_URL="$EC_SVC_URL" \
 -e EC_SAC_MSTR_URL="$SAC_URL_MST" \
@@ -117,10 +123,10 @@ cat << EOF
 -------------------------------------
 EOF
 
-CA_PPS=$(echo $crdj | jq -r ".agt4Svc1_1Test.ownerHash")
 docker run \
+--network=host \
 -e AGENT_REV=v1.hokkaido.213 \
--e EC_PPS=$CA_PPS ghcr.io/ec-release/agt:1 -ver
+-e EC_PPS=$EC_CSC ghcr.io/ec-release/agt:1 -ver
 
 : 'GTW_TKN=$(printf "admin:%s" "$SvcTkn" | base64 -w0)
 GTW_PRT="7991"
