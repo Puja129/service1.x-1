@@ -13,7 +13,7 @@
 # development memo:
 # this test is to demonstrate the resiliency of the upgraded EC service v1.1, sac, and its-
 # service-2-sac integration, with the goals [1]avoiding potential human error/silos during a manual-
-# tests, [2]migrating current EC service instances deployed in prefix cf1 to a targeted K8 inst-
+# tests, [2]migrating current EC service instances deployed in cloud foundry to a targeted K8 inst-
 # [3]providing data to enable performance analysis.
 #
 
