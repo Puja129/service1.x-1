@@ -4,20 +4,12 @@
 # output: the token
 function fetchCognitoTkn() {
   echo my task
-  auth=$(echo -n '$2:$3' | base64)
-  resp="$(curl -s -X POST '$1' \
-  -H 'Content-Type: application/x-www-form-urlencoded' \
-  -H 'Authorization: Basic $auth' \
-  -d 'grant_type=client_credentials')"
-  printf "{\"resp\":\"%s\"}" "${resp}"
-  #val_resp=$(echo "${resp}" | grep "$access_token")
-  my_token=$(echo ${resp} | jq -r '.access_token')
-  printf "{\"my_token\":\"%s\"}" "$my_token"
+
 }
-my_token=$(fetchCognitoTkn "$COGNITO_URL" "$COGNITO_CID" "$COGNITO_CSC")
+:'my_token=$(fetchCognitoTkn "$COGNITO_URL" "$COGNITO_CID" "$COGNITO_CSC")
 jwtdec=$(echo "$my_token" | jq -R 'split(".") | .[0] | @base64d | fromjson')
 kid=$(echo "$jwtdec" | jq -r '.kid')
-echo kid: $kid
+echo kid: $kid'
 
 :'cat << EOF
 
