@@ -297,7 +297,8 @@ done
 cat << EOF
 
 -------------------------------------
-[vv] logs dump
+[vv] logs dump & qa data sync
 -------------------------------------
 EOF
 docker logs svc --tail 500
+sleep 10
