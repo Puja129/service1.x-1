@@ -14,7 +14,8 @@ function fetchCognitoTkn() {
   #printf '%s' "$my_token"
 }
 my_token=$(fetchCognitoTkn "$COGNITO_URL" "$COGNITO_CID" "$COGNITO_CSC")
-jwtdec=$(echo "$my_token" | jq -R 'split(".") | .[0] | @base64d | fromjson')
+#jwtdec=$(echo "$my_token" | jq -R 'split(".") | .[0] | @base64d | fromjson')
+jwtdec=$(echo "$my_token" | jq -R 'split(".")' | jq -r '.[0]' | base64 -d)
 kid=$(echo "$jwtdec" | jq -r '.kid')
 echo kid: $kid
 
