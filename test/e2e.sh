@@ -10,10 +10,11 @@
 #
 #  author: apolo.yasuda@ge.com
 #
-# development memo-
-# this test is to demonstrate the resilliency of the newly developed EC service v1.1 and its-
-# service-2-sac integration, with the goal of migrating current EC service instances deployed-
-# in Prefix CF1 to the AWS K8 environment (EKS)
+# development memo:
+# this test is to demonstrate the resilliency of the newly upgraded EC service v1.1 and its-
+# service-2-sac integration, with the goals [1]avoiding any human error/silos during a manual-
+# tests, [2]migrating current EC service instances deployed in prefix cf1 to a targeted K8 inst-
+# [3]providing data to enable performance analysis.
 #
 
 cat << EOF
