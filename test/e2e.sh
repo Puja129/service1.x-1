@@ -55,7 +55,7 @@ EC_SETTING=$(printf '{"%s":{"ids":["my-aid-1","my-aid-2"],"trustedIssuerIds":["l
 cat << EOF
 
 -------------------------------------
-[iv] launch sac master
+[iii] launch sac master
 -------------------------------------
 EOF
 
@@ -98,7 +98,7 @@ sleep 10
 cat << EOF
 
 -------------------------------------
-[iii] launch service instance
+[v] launch service instance
 -------------------------------------
 EOF
 
@@ -126,7 +126,7 @@ sleep 10
 cat << EOF
 
 -------------------------------------
-[iv] launch agent instance
+[vi] launch agent instance
 -------------------------------------
 EOF
 
@@ -160,7 +160,7 @@ agent \
 cat << EOF
 
 -------------------------------------
-[v] initialising test
+[vii] initialising test
 -------------------------------------
 
 EOF
@@ -168,7 +168,7 @@ EOF
 cat << EOF
 
 -------------------------------------
-[vi] verify serialised service setting 
+[viii] verify serialised service setting 
 -------------------------------------
 
 EOF
@@ -179,7 +179,7 @@ cat ./svcs/$EC_SVC_ID.json
 cat << EOF
 
 -------------------------------------
-[vii] endpoints checking
+[viv] endpoints checking
 -------------------------------------
 
 EOF
@@ -297,7 +297,7 @@ done
 cat << EOF
 
 -------------------------------------
-[vii] logs dump
+[vv] logs dump
 -------------------------------------
 EOF
 docker logs svc --tail 500
