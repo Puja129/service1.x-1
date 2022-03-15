@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    environment: dev
+    #environment: dev
     env:
       #for build only
       EC_GITHUB_TOKEN: ${{secrets.MY_GITHUB_TKN}}      
