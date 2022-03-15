@@ -177,22 +177,8 @@ cat << EOF
 
 EOF
 
-cat << EOF
-
-
- - sac token validation
- - <sac-master>/**/**/user/<id>
- - <sac-slave>/**/**/proc/<id>
- 
-EOF
-
- echo TOKEN: $(getSdcTkn "$EC_CID" "$EC_CSC" "$SAC_URL_MST")
- 
- exit 0
-#my_token=$(fetchCognitoTkn <$cgnto-url> <$cgnto-cid> <$cgnto-csc>)
-#format of the req body
-#req_body=$(printf '{"hello":"world","token":"%s"}' "$my_token" | jq -aRs . )
-#curl <sac> -h <some-header> -d "$req_body"
+REG=$(getSdcTkn "$EC_CID" "$EC_CSC" "$SAC_URL_MST")
+curl -sS -X GET "${SAC_URL_SLV}/v1.2beta/ec/api" -H "accept: application/json" -H "Authorization: Bearer ${REG}"
 
 cat << EOF
 
@@ -243,10 +229,20 @@ cat << EOF
 
  - cognito token validation (sac)
  - Auth Bearer
- - /v1/api/token/validate
- - /v1.1/api/token/validate
+ - the flow:
+   |_ <cognito-url>/oauth/token               |
+     |_ <sac-master>/**/**/<ec-cid>/reg       v
+       |_ <sac-slave>/**/**/<svc-id>/vfy
+         |_ /v1/api/token/validate            | 
+           |_ /v1.1/api/token/validate        v
  
 EOF
+
+
+#my_token=$(fetchCognitoTkn <$cgnto-url> <$cgnto-cid> <$cgnto-csc>)
+#format of the req body
+#req_body=$(printf '{"hello":"world","token":"%s"}' "$my_token" | jq -aRs . )
+#curl <sac> -h <some-header> -d "$req_body"
 
 x=1; y1=0; y2=0
 while [ "$x" -le "$count" ]
