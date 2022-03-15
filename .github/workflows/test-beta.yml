@@ -4,32 +4,18 @@ on:
     #NY 23:00pm
     - cron: '0 3 * * *'
   workflow_dispatch:
-  #push:
-  #  branches: [ 0.1-b.1, main ]
-  #pull_request:
-  #  branches: [ 0.1-b.1, main ]
-  #  types: [opened, synchronize]
 jobs:
   build:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
     environment: dev
     env:
-      EC_SVC_ID: my-test-id
-      EC_SVC_URL: my-test-svc-url
-      EC_ADM_TKN: my-legacy-cf-admin-token
-      EC_GITHUB_TOKEN: ${{secrets.MY_GITHUB_TKN}}
-      
       #for build only
+      EC_GITHUB_TOKEN: ${{secrets.MY_GITHUB_TKN}}      
       EC_BUILD_ID: ${{ github.run_number }}
-      SAC_MSTR_URL_TEST_ONLY: ${{secrets.EC_SAC_MSTR_URL}}
-      SAC_SLAV_URL_TEST_ONLY: ${{secrets.EC_SAC_SLAV_URL}}
       
     steps:
       - uses: actions/checkout@v2
       - name: Launch Service 1.1 (Beta)
         run: chmod +x ./test/e2e.sh && ./test/e2e.sh
-        #run: |
-        #  timeout --version
-        #  timeout 2 ping localhost
             
