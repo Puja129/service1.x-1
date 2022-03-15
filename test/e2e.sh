@@ -61,7 +61,7 @@ docker run \
 -e EC_PORT=":$SAC_MST_PORT" \
 -p "$SAC_MST_PORT:$SAC_MST_PORT" \
 -d \
-ghcr.io/ec-release/sac:"$SAC_TYPE_MST"
+ghcr.io/ec-release/sac:"$SAC_TYPE_MST" &> /dev/null
  
 sleep 10
  
@@ -82,7 +82,8 @@ docker run \
 -e EC_CSC="$EC_CSC" \
 -e EC_PORT=":$SAC_SLV_PORT" \
 -p "$SAC_SLV_PORT:$SAC_SLV_PORT" \
-ghcr.io/ec-release/sac:"$SAC_TYPE_SLV"
+-d \
+ghcr.io/ec-release/sac:"$SAC_TYPE_SLV" &> /dev/null
 
 sleep 10
 
@@ -112,7 +113,7 @@ docker run \
 -d \
 ghcr.io/ec-release/svc:1.1 &> /dev/null
 
-#docker logs svc --tail 1000
+sleep 10
 
 cat << EOF
 
@@ -155,8 +156,6 @@ cat << EOF
 -------------------------------------
 
 EOF
-
-sleep 10
 
 cat << EOF
 
