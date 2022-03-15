@@ -15,9 +15,9 @@ function fetchCognitoTkn() {
   echo "$resp" | jq -r '.access_token'
   #printf '%s' "$my_token"
 }
-fetchCognitoTkn
+fetchCognitoTkn "$EC_COGNITO_URL"
 exit 0
-my_token=$(fetchCognitoTkn "$COGNITO_URL" "$COGNITO_CID" "$COGNITO_CSC")
+my_token=$(fetchCognitoTkn "$EC_COGNITO_URL" "$EC_COGNITO_CID" "$EC_COGNITO_CSC")
 #echo cognito_url: "$COGNITO_URL"
 #jwtdec=$(echo "$my_token" | jq -R 'split(".") | .[0] | @base64d | fromjson')
 jwtdec=$(echo "$my_token" | jq -R 'split(".")' | jq -r '.[0]' | base64 -d)
