@@ -5,9 +5,9 @@
 function fetchCognitoTkn() {
   auth=$(echo -n "$2:$3" | base64)
   resp=$(curl -s -X POST "$1" -H 'Content-Type: application/x-www-form-urlencoded' -H "Authorization: Basic $auth" -d 'grant_type=client_credentials')
-  #printf "{\"resp\":\"%s\"}" "${resp}"
+  printf "{\"resp\":\"%s\"}" "${resp}"
   #val_resp=$(echo "${resp}" | grep "$access_token")
-  echo "$resp" | jq -r '.access_token'
+  #echo "$resp" | jq -r '.access_token'
   #printf '%s' "$my_token"
 }
 
