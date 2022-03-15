@@ -34,6 +34,10 @@ SAC_TYPE_SLV="slave"
 SAC_URL_MST="http://localhost:${SAC_MST_PORT}"
 SAC_URL_SLV="http://localhost:${SAC_SLV_PORT}"
 
+CGNTO_URL="<cognito-url>"
+CGNTO_CID="<cognito-csc>"
+CGNTO_CSC="<cognito-cid>"
+
 cat << EOF
 
 -------------------------------------
