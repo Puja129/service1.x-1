@@ -3,7 +3,6 @@
 # $1: cognito tkn endpoint. $2: cognito clientid. $3: cognito client secrt
 # output: the token
 function fetchCognitoTkn() {
-  echo my task
   auth=$(echo -n "$2:$3" | base64)
   resp=$(curl -s -X POST "$1" \
   -H 'Content-Type: application/x-www-form-urlencoded' \
