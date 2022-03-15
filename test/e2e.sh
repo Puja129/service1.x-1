@@ -47,6 +47,7 @@ CGNTO_CSC="<cognito-cid>"
 crdj=$(getCredJson "cred.json" "$EC_GITHUB_TOKEN")
 EC_CID=$(echo $crdj | jq -r ".svc1_1Test.devId")
 EC_CSC=$(echo $crdj | jq -r ".svc1_1Test.ownerHash")
+AGT_HS=$(echo $crdj | jq -r ".pps4agt1")
 
 cat << EOF
 
@@ -139,7 +140,7 @@ EOF
 docker run \
 --network=host \
 -e AGENT_REV=v1.hokkaido.213 \
--e EC_PPS=$EC_CSC ghcr.io/ec-release/agt:1 -ver
+-e "EC_PPS=${AGT_HS}" ghcr.io/ec-release/agt:1 -ver
 
 : 'GTW_TKN=$(printf "admin:%s" "$SvcTkn" | base64 -w0)
 GTW_PRT="7991"
